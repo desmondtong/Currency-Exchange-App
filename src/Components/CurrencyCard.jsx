@@ -33,7 +33,7 @@ const CurrencyCard = (props) => {
         </select>
       </div>
       <div className="row">
-        <input></input>
+        <input disabled={props.disabled}></input>
       </div>
     </>
   );
