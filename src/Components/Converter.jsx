@@ -9,6 +9,7 @@ const Converter = () => {
   const [convert, setConvert] = useState({});
 
   const [selection, setSelection] = useState({ from: "AED", to: "AED" });
+  const [reverse, setReverse] = useState(false);
 
   const getData = useGet();
 
@@ -30,7 +31,12 @@ const Converter = () => {
   };
 
   const reverseSym = () => {
-    console.log("clicked");
+    let a, b;
+    [a, b] = [selection.from, selection.to];
+    setSelection((currState) => {
+      return { ...currState, from: b, to: a };
+    });
+    setReverse(true);
   };
 
   //use effect
@@ -57,6 +63,9 @@ const Converter = () => {
             currSymbol={currSymbol}
             cryptoSymbol={cryptoSymbol}
             setSelection={setSelection}
+            selection={selection}
+            setReverse={setReverse}
+            reverse={reverse}
           ></CurrencyCard>
         </div>
         <div className="col-sm-2">
@@ -67,6 +76,9 @@ const Converter = () => {
             currSymbol={currSymbol}
             cryptoSymbol={cryptoSymbol}
             setSelection={setSelection}
+            selection={selection}
+            setReverse={setReverse}
+            reverse={reverse}
             to={true}
             disabled={true}
           ></CurrencyCard>
