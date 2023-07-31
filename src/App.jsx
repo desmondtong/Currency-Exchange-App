@@ -3,6 +3,8 @@ import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
 
+const defaultCurrency = { from: "EUR", to: "USD" };
+
 const todayDate = new Date().toISOString().split("T")[0];
 
 function App() {
@@ -12,8 +14,8 @@ function App() {
 
   // state
   const [selection, setSelection] = useState({
-    from: "SGD",
-    to: "MYR",
+    from: defaultCurrency.from,
+    to: defaultCurrency.to,
     amount: 1,
     date: todayDate,
   });

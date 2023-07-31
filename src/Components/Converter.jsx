@@ -50,7 +50,7 @@ const Converter = (props) => {
 
   return (
     <>
-      {JSON.stringify(convert)}
+      {/* {JSON.stringify(convert)} */}
       <br></br>
       <br></br>
       {JSON.stringify(props.selection)}
