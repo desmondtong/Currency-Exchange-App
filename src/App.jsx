@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
+import Watchlist from "./Components/Watchlist";
 
 const defaultCurrency = { from: "SGD", to: "MYR" };
 
@@ -59,7 +60,9 @@ function App() {
               ></Graph>
             </div>
           </div>
-          <div className="col-sm-3 border">WATCHLIST</div>
+          <div className="col-sm-3 border">
+            <Watchlist></Watchlist>
+          </div>
         </div>
       </div>
     </>

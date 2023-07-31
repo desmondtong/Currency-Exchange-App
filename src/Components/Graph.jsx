@@ -101,19 +101,19 @@ const Graph = (props) => {
         </p>
       </div>
       <div className="row">
-        <div className="col-sm-5"></div>
-        <div className="col-sm-2">
-          <button name={"1W"} onClick={handleTimeFrame}>
+        <div className="col-sm-4"></div>
+        <div className="col-sm-4 centered">
+          <button className='timeframe-btn btn btn-outline-secondary' name={"1W"} onClick={handleTimeFrame}>
             1W
           </button>
-          <button name={"1M"} onClick={handleTimeFrame}>
+          <button className='timeframe-btn btn btn-outline-secondary' name={"1M"} onClick={handleTimeFrame}>
             1M
           </button>
-          <button name={"1Y"} onClick={handleTimeFrame}>
+          <button className='timeframe-btn btn btn-outline-secondary' name={"1Y"} onClick={handleTimeFrame}>
             1Y
           </button>
         </div>
-        <div className="col-sm-5"></div>
+        <div className="col-sm-4"></div>
       </div>
       <div className="row">
         <Line data={data}></Line>

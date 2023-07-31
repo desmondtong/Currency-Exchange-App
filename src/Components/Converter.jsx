@@ -58,7 +58,9 @@ const Converter = (props) => {
       {JSON.stringify(props.currSymbol)}
       <br></br> */}
 
-      <div className="row">Converter</div>
+      <div className="row">
+        <p>Converter</p>
+      </div>
       <div className="row">
         <div className="col-sm-5">
           <CurrencyCard
