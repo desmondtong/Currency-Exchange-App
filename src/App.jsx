@@ -3,7 +3,7 @@ import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
 
-const defaultCurrency = { from: "EUR", to: "USD" };
+const defaultCurrency = { from: "SGD", to: "MYR" };
 
 const todayDate = new Date().toISOString().split("T")[0];
 
