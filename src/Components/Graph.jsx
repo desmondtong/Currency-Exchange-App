@@ -15,11 +15,11 @@ const Graph = (props) => {
     // calculate start date
     let startDate;
     if (timeframe === "1W") {
-      startDate = historyDate(-7, 0, 0);
+      startDate = props.historyDate(-7, 0, 0);
     } else if (timeframe === "1M") {
-      startDate = historyDate(0, -1, 0);
+      startDate = props.historyDate(0, -1, 0);
     } else {
-      startDate = historyDate(0, 0, -1);
+      startDate = props.historyDate(0, 0, -1);
     }
 
     // get time-series data
@@ -52,15 +52,6 @@ const Graph = (props) => {
     });
   };
 
-  // subtract date
-  const historyDate = (days, months, years) => {
-    var date = new Date();
-    date.setDate(date.getDate() + days);
-    date.setMonth(date.getMonth() + months);
-    date.setFullYear(date.getFullYear() + years);
-    return date.toISOString().split("T")[0];
-  };
-
   // useEffect
   useEffect(() => {
     getGraphData(props.selection.timeframe);
@@ -90,7 +81,7 @@ const Graph = (props) => {
       {/* {JSON.stringify(props.selection)} */}
       {/* <br></br> */}
       <div className="row">
-        <p>
+        <h4>
           {props.selection.from} to {props.selection.to} Chart{" "}
           <span
             style={{ color: fluctuation.chgPercentage < 0 ? "red" : "green" }}
@@ -98,18 +89,30 @@ const Graph = (props) => {
             {fluctuation.chgPercentage}%
           </span>{" "}
           {fluctuation.timeframe}
-        </p>
+        </h4>
       </div>
       <div className="row">
         <div className="col-sm-4"></div>
         <div className="col-sm-4 centered">
-          <button className='timeframe-btn btn btn-outline-secondary' name={"1W"} onClick={handleTimeFrame}>
+          <button
+            className="timeframe-btn btn btn-outline-secondary"
+            name={"1W"}
+            onClick={handleTimeFrame}
+          >
             1W
           </button>
-          <button className='timeframe-btn btn btn-outline-secondary' name={"1M"} onClick={handleTimeFrame}>
+          <button
+            className="timeframe-btn btn btn-outline-secondary"
+            name={"1M"}
+            onClick={handleTimeFrame}
+          >
             1M
           </button>
-          <button className='timeframe-btn btn btn-outline-secondary' name={"1Y"} onClick={handleTimeFrame}>
+          <button
+            className="timeframe-btn btn btn-outline-secondary"
+            name={"1Y"}
+            onClick={handleTimeFrame}
+          >
             1Y
           </button>
         </div>

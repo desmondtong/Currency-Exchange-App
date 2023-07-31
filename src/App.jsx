@@ -35,6 +35,15 @@ function App() {
     setCryptoSymbol(data.cryptocurrencies);
   };
 
+  // subtract date
+  const historyDate = (days, months, years) => {
+    var date = new Date();
+    date.setDate(date.getDate() + days);
+    date.setMonth(date.getMonth() + months);
+    date.setFullYear(date.getFullYear() + years);
+    return date.toISOString().split("T")[0];
+  };
+
   return (
     <>
       <h1>Website name</h1>
@@ -57,11 +66,15 @@ function App() {
                 selection={selection}
                 setSelection={setSelection}
                 todayDate={todayDate}
+                historyDate={historyDate}
               ></Graph>
             </div>
           </div>
           <div className="col-sm-3 border">
-            <Watchlist></Watchlist>
+            <Watchlist
+              todayDate={todayDate}
+              historyDate={historyDate}
+            ></Watchlist>
           </div>
         </div>
       </div>

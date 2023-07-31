@@ -59,7 +59,7 @@ const Converter = (props) => {
       <br></br> */}
 
       <div className="row">
-        <p>Converter</p>
+        <h4>Converter</h4>
       </div>
       <div className="row">
         <div className="col-sm-5">
