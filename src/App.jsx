@@ -12,8 +12,8 @@ function App() {
 
   // state
   const [selection, setSelection] = useState({
-    from: "AED",
-    to: "AED",
+    from: "SGD",
+    to: "MYR",
     amount: 1,
     date: todayDate,
   });

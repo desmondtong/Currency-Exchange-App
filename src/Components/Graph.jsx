@@ -16,7 +16,10 @@ const Graph = (props) => {
     );
     setTimeSeries(
       Object.entries(data.rates).map((item) => {
-        return { date: new Date(item[0]).toDateString(), rate: item[1][props.selection.to] };
+        return {
+          date: new Date(item[0]).toDateString(),
+          rate: item[1][props.selection.to],
+        };
       })
     );
   };
@@ -41,6 +44,15 @@ const Graph = (props) => {
       {
         // label: "Acquisitions by year",
         data: timeSeries.map((item) => item.rate),
+        // options: {
+        //   scales: {
+        //     x: {
+        //       ticks: {
+        //         callback: (ticks) => (ticks = [1, 2, 3, 4, 5, 6, 7]),
+        //       },
+        //     },
+        //   },
+        // },
       },
     ],
   };

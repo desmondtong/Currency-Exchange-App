@@ -29,13 +29,7 @@ const CurrencyCard = (props) => {
   const handleDisplayConvert = () => {
     if (props.to) inputRef.current.value = props.convert.result;
   };
-
-  // why not working?
-  // useEffect(() => {
-  //   selectRef.current.defaultValue = props.to ? "MYR" : "SGD";
-  //   console.log("set default");
-  // }, []);
-
+  
   // to reverse symbol after button clicked
   useEffect(() => {
     {
@@ -43,7 +37,7 @@ const CurrencyCard = (props) => {
     }
     props.setReverse(false);
   }, [props.reverse]);
-
+  
   // to display converted rate
   useEffect(() => {
     handleDisplayConvert();
@@ -57,8 +51,13 @@ const CurrencyCard = (props) => {
           onChange={handleSelection}
           ref={selectRef}
         >
-          {Object.keys(props.currSymbol).map((item, idx) => {
-            return <option key={idx} value={item}>{`${item}`}</option>;
+          {Object.values(props.currSymbol).map((item, idx) => {
+            return (
+              <option
+                key={idx}
+                value={item.code}
+              >{`${item.code} - ${item.description}`}</option>
+            );
           })}
         </select>
       </div>

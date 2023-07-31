@@ -6,7 +6,7 @@ const Converter = (props) => {
   const dateRef = useRef();
 
   // state for API endpoints
-  const [convert, setConvert] = useState({});
+  const [convert, setConvert] = useState({ result: 1 });
 
   // state
   const [reverse, setReverse] = useState(false);
@@ -55,6 +55,7 @@ const Converter = (props) => {
       <br></br>
       {JSON.stringify(props.selection)}
       <br></br>
+      {/* {JSON.stringify(props.currSymbol)} */}
       <br></br>
 
       <div className="row">Converter</div>
