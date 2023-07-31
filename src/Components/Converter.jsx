@@ -4,12 +4,10 @@ import useGet from "../Hooks/useGet";
 
 const todayDate = new Date().toISOString().split("T")[0];
 
-const Converter = () => {
+const Converter = (props) => {
   const dateRef = useRef();
 
   // state for API endpoints
-  const [currSymbol, setcurrSymbol] = useState({});
-  const [cryptoSymbol, setCryptoSymbol] = useState({});
   const [convert, setConvert] = useState({});
 
   // state
@@ -23,16 +21,6 @@ const Converter = () => {
 
   // function to call API
   const getData = useGet();
-
-  const getCurrSymbol = async () => {
-    const data = await getData("symbols");
-    setcurrSymbol(data.symbols);
-  };
-
-  const getCryptoSymbol = async () => {
-    const data = await getData("cryptocurrencies");
-    setCryptoSymbol(data.cryptocurrencies);
-  };
 
   const getConvert = async () => {
     const data = await getData(
@@ -59,8 +47,8 @@ const Converter = () => {
 
   //use effect
   useEffect(() => {
-    getCurrSymbol();
-    getCryptoSymbol();
+    props.getCurrSymbol();
+    props.getCryptoSymbol();
     console.log("useEff run");
   }, []);
 
@@ -72,13 +60,17 @@ const Converter = () => {
     <>
       {JSON.stringify(convert)}
       <br></br>
+      <br></br>
       {JSON.stringify(selection)}
+      <br></br>
+      <br></br>
+
       <div className="row">Converter</div>
       <div className="row">
         <div className="col-sm-5">
           <CurrencyCard
-            currSymbol={currSymbol}
-            cryptoSymbol={cryptoSymbol}
+            currSymbol={props.currSymbol}
+            cryptoSymbol={props.cryptoSymbol}
             setSelection={setSelection}
             selection={selection}
             setReverse={setReverse}
@@ -91,8 +83,8 @@ const Converter = () => {
         </div>
         <div className="col-sm-5">
           <CurrencyCard
-            currSymbol={currSymbol}
-            cryptoSymbol={cryptoSymbol}
+            currSymbol={props.currSymbol}
+            cryptoSymbol={props.cryptoSymbol}
             setSelection={setSelection}
             selection={selection}
             setReverse={setReverse}

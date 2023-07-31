@@ -52,7 +52,11 @@ const CurrencyCard = (props) => {
   return (
     <>
       <div className="row">
-        <select onChange={handleSelection} ref={selectRef}>
+        <select
+          defaultValue={props.to ? "MYR" : "SGD"}
+          onChange={handleSelection}
+          ref={selectRef}
+        >
           {Object.keys(props.currSymbol).map((item, idx) => {
             return <option key={idx} value={item}>{`${item}`}</option>;
           })}
