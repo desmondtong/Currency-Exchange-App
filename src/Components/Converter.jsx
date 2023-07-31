@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import CurrencyCard from "./CurrencyCard";
 import useGet from "../Hooks/useGet";
 
-const todayDate = new Date().toISOString().split("T")[0];
-
 const Converter = (props) => {
   const dateRef = useRef();
 
@@ -11,12 +9,6 @@ const Converter = (props) => {
   const [convert, setConvert] = useState({});
 
   // state
-  const [selection, setSelection] = useState({
-    from: "AED",
-    to: "AED",
-    amount: 1,
-    date: todayDate,
-  });
   const [reverse, setReverse] = useState(false);
 
   // function to call API
@@ -24,7 +16,7 @@ const Converter = (props) => {
 
   const getConvert = async () => {
     const data = await getData(
-      `convert?from=${selection.from}&to=${selection.to}&amount=${selection.amount}&date=${selection.date}`
+      `convert?from=${props.selection.from}&to=${props.selection.to}&amount=${props.selection.amount}&date=${props.selection.date}`
     );
     setConvert(data);
   };
@@ -32,15 +24,15 @@ const Converter = (props) => {
   // function
   const handleReverse = () => {
     let a, b;
-    [a, b] = [selection.from, selection.to];
-    setSelection((currState) => {
+    [a, b] = [props.selection.from, props.selection.to];
+    props.setSelection((currState) => {
       return { ...currState, from: b, to: a };
     });
     setReverse(true);
   };
 
   const handleDate = () => {
-    setSelection((currState) => {
+    props.setSelection((currState) => {
       return { ...currState, date: dateRef.current.value };
     });
   };
@@ -54,14 +46,14 @@ const Converter = (props) => {
 
   useEffect(() => {
     getConvert();
-  }, [selection]);
+  }, [props.selection]);
 
   return (
     <>
       {JSON.stringify(convert)}
       <br></br>
       <br></br>
-      {JSON.stringify(selection)}
+      {JSON.stringify(props.selection)}
       <br></br>
       <br></br>
 
@@ -71,8 +63,8 @@ const Converter = (props) => {
           <CurrencyCard
             currSymbol={props.currSymbol}
             cryptoSymbol={props.cryptoSymbol}
-            setSelection={setSelection}
-            selection={selection}
+            setSelection={props.setSelection}
+            selection={props.selection}
             setReverse={setReverse}
             reverse={reverse}
             convert={convert}
@@ -85,8 +77,8 @@ const Converter = (props) => {
           <CurrencyCard
             currSymbol={props.currSymbol}
             cryptoSymbol={props.cryptoSymbol}
-            setSelection={setSelection}
-            selection={selection}
+            setSelection={props.setSelection}
+            selection={props.selection}
             setReverse={setReverse}
             reverse={reverse}
             convert={convert}
@@ -100,8 +92,8 @@ const Converter = (props) => {
         <input
           className="col-sm-4"
           type="date"
-          defaultValue={todayDate}
-          max={todayDate}
+          defaultValue={props.todayDate}
+          max={props.todayDate}
           ref={dateRef}
           onChange={handleDate}
         ></input>

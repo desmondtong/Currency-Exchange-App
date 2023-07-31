@@ -3,10 +3,20 @@ import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
 
+const todayDate = new Date().toISOString().split("T")[0];
+
 function App() {
   // state for API endpoints
   const [currSymbol, setcurrSymbol] = useState({});
   const [cryptoSymbol, setCryptoSymbol] = useState({});
+
+  // state
+  const [selection, setSelection] = useState({
+    from: "AED",
+    to: "AED",
+    amount: 1,
+    date: todayDate,
+  });
 
   // function to call API
   const getData = useGet();
@@ -33,6 +43,9 @@ function App() {
                 cryptoSymbol={cryptoSymbol}
                 getCurrSymbol={getCurrSymbol}
                 getCryptoSymbol={getCryptoSymbol}
+                selection={selection}
+                setSelection={setSelection}
+                todayDate={todayDate}
               ></Converter>
             </div>
             <div className="row border">
