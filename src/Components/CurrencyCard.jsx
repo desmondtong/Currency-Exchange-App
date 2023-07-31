@@ -4,7 +4,7 @@ const CurrencyCard = (props) => {
   const selectRef = useRef();
   const inputRef = useRef();
 
-  const handleSelection = (event) => {
+  const handleSelection = () => {
     if (props.to) {
       props.setSelection((currState) => {
         return { ...currState, to: selectRef.current.value };

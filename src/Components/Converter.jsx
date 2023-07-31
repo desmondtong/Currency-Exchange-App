@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CurrencyCard from "./CurrencyCard";
 import useGet from "../Hooks/useGet";
 
 const todayDate = new Date().toISOString().split("T")[0];
 
 const Converter = () => {
+  const dateRef = useRef();
+
   // state for API endpoints
   const [currSymbol, setcurrSymbol] = useState({});
   const [cryptoSymbol, setCryptoSymbol] = useState({});
@@ -15,6 +17,7 @@ const Converter = () => {
     from: "AED",
     to: "AED",
     amount: 1,
+    date: todayDate,
   });
   const [reverse, setReverse] = useState(false);
 
@@ -33,19 +36,25 @@ const Converter = () => {
 
   const getConvert = async () => {
     const data = await getData(
-      `convert?from=${selection.from}&to=${selection.to}&amount=${selection.amount}`
+      `convert?from=${selection.from}&to=${selection.to}&amount=${selection.amount}&date=${selection.date}`
     );
     setConvert(data);
   };
 
   // function
-  const reverseSym = () => {
+  const handleReverse = () => {
     let a, b;
     [a, b] = [selection.from, selection.to];
     setSelection((currState) => {
       return { ...currState, from: b, to: a };
     });
     setReverse(true);
+  };
+
+  const handleDate = () => {
+    setSelection((currState) => {
+      return { ...currState, date: dateRef.current.value };
+    });
   };
 
   //use effect
@@ -62,6 +71,7 @@ const Converter = () => {
   return (
     <>
       {JSON.stringify(convert)}
+      <br></br>
       {JSON.stringify(selection)}
       <div className="row">Converter</div>
       <div className="row">
@@ -77,7 +87,7 @@ const Converter = () => {
           ></CurrencyCard>
         </div>
         <div className="col-sm-2">
-          <button onClick={reverseSym}>rev btn</button>
+          <button onClick={handleReverse}>rev btn</button>
         </div>
         <div className="col-sm-5">
           <CurrencyCard
@@ -99,6 +109,9 @@ const Converter = () => {
           className="col-sm-4"
           type="date"
           defaultValue={todayDate}
+          max={todayDate}
+          ref={dateRef}
+          onChange={handleDate}
         ></input>
       </div>
       <div className="row"></div>
