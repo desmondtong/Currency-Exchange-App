@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useGet from "../Hooks/useGet";
+import Chart from "chart.js/auto";
 
 const Graph = (props) => {
+  const chartRef = useRef();
+
   // state for API endpoints (GET)
   const [timeSeries, setTimeSeries] = useState([]);
 
@@ -34,9 +37,34 @@ const Graph = (props) => {
     getTimeSeries(historyDate(0, 0, -1));
   }, [props.selection]);
 
+  const data = [
+    { year: 2010, count: 10 },
+    { year: 2011, count: 20 },
+    { year: 2012, count: 15 },
+    { year: 2013, count: 25 },
+    { year: 2014, count: 22 },
+    { year: 2015, count: 30 },
+    { year: 2016, count: 28 },
+  ];
+
+  new Chart(chartRef.current, {
+    type: "bar",
+    data: {
+      labels: data.map((row) => row.year),
+      datasets: [
+        {
+          label: "Acquisitions by year",
+          data: data.map((row) => row.count),
+        },
+      ],
+    },
+  });
+
   return (
     <>
       {JSON.stringify(timeSeries)}
+      <br></br>
+      {/* {console.log(chartRef.current.id)} */}
       <br></br>
       <div className="row">
         {props.selection.from} to {props.selection.to} Chart
@@ -55,6 +83,9 @@ const Graph = (props) => {
           </button>
         </div>
         <div className="col-sm-5"></div>
+      </div>
+      <div className="row">
+        <canvas id="chart" ref={chartRef}></canvas>
       </div>
     </>
   );
