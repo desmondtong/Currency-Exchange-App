@@ -50,13 +50,13 @@ const Converter = (props) => {
 
   return (
     <>
-      {/* {JSON.stringify(convert)} */}
+      {/* {JSON.stringify(convert)}
       <br></br>
       <br></br>
       {JSON.stringify(props.selection)}
       <br></br>
-      {/* {JSON.stringify(props.currSymbol)} */}
-      <br></br>
+      {JSON.stringify(props.currSymbol)}
+      <br></br> */}
 
       <div className="row">Converter</div>
       <div className="row">

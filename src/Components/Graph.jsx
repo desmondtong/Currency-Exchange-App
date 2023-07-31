@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 const Graph = (props) => {
   // state for API endpoints (GET)
   const [timeSeries, setTimeSeries] = useState([]);
-  const [fluctuation, setFluctuation] = useState("");
+  const [fluctuation, setFluctuation] = useState({});
 
   // function to call API
   const getData = useGet();
@@ -32,7 +32,7 @@ const Graph = (props) => {
     const chgPercentage =
       Math.ceil(dataFluc.rates[props.selection.to]["change_pct"] * -10000) /
       100;
-    setFluctuation(`${chgPercentage} ${duration}`);
+    setFluctuation({ chgPercentage, duration });
   };
 
   // subtract date
@@ -71,10 +71,18 @@ const Graph = (props) => {
   return (
     <>
       {/* {JSON.stringify(fluctuation)} */}
-      <br></br>
-      <p className="row">
-        {props.selection.from} to {props.selection.to} Chart {fluctuation} %
-      </p>
+      {/* <br></br> */}
+      <div className="row">
+        <p>
+          {props.selection.from} to {props.selection.to} Chart{" "}
+          <span
+            style={{ color: fluctuation.chgPercentage < 0 ? "red" : "green" }}
+          >
+            {fluctuation.chgPercentage}%
+          </span>{" "}
+          {fluctuation.duration}
+        </p>
+      </div>
       <div className="row">
         <div className="col-sm-5"></div>
         <div className="col-sm-2">
