@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CurrencyCard from "./CurrencyCard";
 import useGet from "../Hooks/useGet";
 
+const todayDate = new Date().toISOString().split("T")[0];
+
 const Converter = () => {
   // state for API endpoints
   const [currSymbol, setcurrSymbol] = useState({});
@@ -62,7 +64,6 @@ const Converter = () => {
       {JSON.stringify(convert)}
       {JSON.stringify(selection)}
       <div className="row">Converter</div>
-      <div className="row">Date selection</div>
       <div className="row">
         <div className="col-sm-5">
           <CurrencyCard
@@ -91,6 +92,14 @@ const Converter = () => {
             disabled={true}
           ></CurrencyCard>
         </div>
+      </div>
+      <div className="row">
+        <label className="col-sm-1">Date:</label>
+        <input
+          className="col-sm-4"
+          type="date"
+          defaultValue={todayDate}
+        ></input>
       </div>
       <div className="row"></div>
     </>

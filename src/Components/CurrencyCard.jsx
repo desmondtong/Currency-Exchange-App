@@ -60,6 +60,7 @@ const CurrencyCard = (props) => {
       </div>
       <div className="row">
         <input
+          type="number"
           disabled={props.disabled}
           defaultValue={1}
           ref={inputRef}
