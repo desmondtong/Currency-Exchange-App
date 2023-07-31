@@ -11,7 +11,7 @@ const Graph = (props) => {
   // function to call API
   const getData = useGet();
 
-  const getGraphData = async (startDate) => {
+  const getGraphData = async (startDate, duration) => {
     // get time-series data
     const dataTimeSeries = await getData(
       `timeseries?start_date=${startDate}&end_date=${props.todayDate}&base=${props.selection.from}&symbols=${props.selection.to}`
@@ -29,7 +29,10 @@ const Graph = (props) => {
     const dataFluc = await getData(
       `fluctuation?start_date=${startDate}&end_date=${props.todayDate}&base=${props.selection.from}&symbols=${props.selection.to}`
     );
-    setFluctuation(Math.ceil(dataFluc.rates[props.selection.to]['change_pct']*-10000)/100);
+    const chgPercentage =
+      Math.ceil(dataFluc.rates[props.selection.to]["change_pct"] * -10000) /
+      100;
+    setFluctuation(`${chgPercentage} ${duration}`);
   };
 
   // subtract date
@@ -43,7 +46,7 @@ const Graph = (props) => {
 
   // useEffect
   useEffect(() => {
-    getGraphData(historyDate(0, 0, -1));
+    getGraphData(historyDate(0, 0, -1), "1Y");
   }, [props.selection]);
 
   const data = {
@@ -69,19 +72,19 @@ const Graph = (props) => {
     <>
       {/* {JSON.stringify(fluctuation)} */}
       <br></br>
-      <div className="row">
+      <p className="row">
         {props.selection.from} to {props.selection.to} Chart {fluctuation} %
-      </div>
+      </p>
       <div className="row">
         <div className="col-sm-5"></div>
         <div className="col-sm-2">
-          <button onClick={() => getGraphData(historyDate(-7, 0, 0))}>
+          <button onClick={() => getGraphData(historyDate(-7, 0, 0), "1W")}>
             1W
           </button>
-          <button onClick={() => getGraphData(historyDate(0, -1, 0))}>
+          <button onClick={() => getGraphData(historyDate(0, -1, 0), "1M")}>
             1M
           </button>
-          <button onClick={() => getGraphData(historyDate(0, 0, -1))}>
+          <button onClick={() => getGraphData(historyDate(0, 0, -1), "1Y")}>
             1Y
           </button>
         </div>
