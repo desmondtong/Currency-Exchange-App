@@ -97,7 +97,7 @@ const Graph = (props) => {
           >
             {fluctuation.chgPercentage}%
           </span>{" "}
-          {fluctuation.duration}
+          {fluctuation.timeframe}
         </p>
       </div>
       <div className="row">
