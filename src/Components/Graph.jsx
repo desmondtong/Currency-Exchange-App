@@ -11,7 +11,17 @@ const Graph = (props) => {
   // function to call API
   const getData = useGet();
 
-  const getGraphData = async (startDate, duration) => {
+  const getGraphData = async (timeframe) => {
+    // calculate start date
+    let startDate;
+    if (timeframe === "1W") {
+      startDate = historyDate(-7, 0, 0);
+    } else if (timeframe === "1M") {
+      startDate = historyDate(0, -1, 0);
+    } else {
+      startDate = historyDate(0, 0, -1);
+    }
+
     // get time-series data
     const dataTimeSeries = await getData(
       `timeseries?start_date=${startDate}&end_date=${props.todayDate}&base=${props.selection.from}&symbols=${props.selection.to}`
@@ -32,7 +42,14 @@ const Graph = (props) => {
     const chgPercentage =
       Math.ceil(dataFluc.rates[props.selection.to]["change_pct"] * -10000) /
       100;
-    setFluctuation({ chgPercentage, duration });
+    setFluctuation({ chgPercentage, timeframe });
+  };
+
+  // function
+  const handleTimeFrame = (event) => {
+    props.setSelection((currState) => {
+      return { ...currState, timeframe: event.target.name };
+    });
   };
 
   // subtract date
@@ -46,7 +63,7 @@ const Graph = (props) => {
 
   // useEffect
   useEffect(() => {
-    getGraphData(historyDate(0, 0, -1), "1Y");
+    getGraphData(props.selection.timeframe);
   }, [props.selection]);
 
   const data = {
@@ -70,7 +87,7 @@ const Graph = (props) => {
 
   return (
     <>
-      {/* {JSON.stringify(fluctuation)} */}
+      {/* {JSON.stringify(props.selection)} */}
       {/* <br></br> */}
       <div className="row">
         <p>
@@ -86,13 +103,13 @@ const Graph = (props) => {
       <div className="row">
         <div className="col-sm-5"></div>
         <div className="col-sm-2">
-          <button onClick={() => getGraphData(historyDate(-7, 0, 0), "1W")}>
+          <button name={"1W"} onClick={handleTimeFrame}>
             1W
           </button>
-          <button onClick={() => getGraphData(historyDate(0, -1, 0), "1M")}>
+          <button name={"1M"} onClick={handleTimeFrame}>
             1M
           </button>
-          <button onClick={() => getGraphData(historyDate(0, 0, -1), "1Y")}>
+          <button name={"1Y"} onClick={handleTimeFrame}>
             1Y
           </button>
         </div>

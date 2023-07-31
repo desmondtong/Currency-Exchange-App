@@ -18,6 +18,7 @@ function App() {
     to: defaultCurrency.to,
     amount: 1,
     date: todayDate,
+    timeframe: "1Y",
   });
 
   // function to call API
@@ -51,7 +52,11 @@ function App() {
               ></Converter>
             </div>
             <div className="row border">
-              <Graph selection={selection} todayDate={todayDate}></Graph>
+              <Graph
+                selection={selection}
+                setSelection={setSelection}
+                todayDate={todayDate}
+              ></Graph>
             </div>
           </div>
           <div className="col-sm-3 border">WATCHLIST</div>
