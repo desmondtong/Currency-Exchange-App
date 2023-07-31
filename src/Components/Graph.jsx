@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import useGet from "../Hooks/useGet";
 import Chart from "chart.js/auto";
+import { Line } from "react-chartjs-2";
 
 const Graph = (props) => {
-  const chartRef = useRef();
-
   // state for API endpoints (GET)
   const [timeSeries, setTimeSeries] = useState([]);
 
@@ -15,10 +14,9 @@ const Graph = (props) => {
     const data = await getData(
       `timeseries?start_date=${startDate}&end_date=${props.todayDate}&base=${props.selection.from}&symbols=${props.selection.to}`
     );
-    // create an array of historic rates
     setTimeSeries(
-      Object.values(data.rates).map((item) => {
-        return item[`${props.selection.to}`];
+      Object.entries(data.rates).map((item) => {
+        return { date: new Date(item[0]).toDateString(), rate: item[1][props.selection.to] };
       })
     );
   };
@@ -37,34 +35,19 @@ const Graph = (props) => {
     getTimeSeries(historyDate(0, 0, -1));
   }, [props.selection]);
 
-  const data = [
-    { year: 2010, count: 10 },
-    { year: 2011, count: 20 },
-    { year: 2012, count: 15 },
-    { year: 2013, count: 25 },
-    { year: 2014, count: 22 },
-    { year: 2015, count: 30 },
-    { year: 2016, count: 28 },
-  ];
-
-  new Chart(chartRef.current, {
-    type: "bar",
-    data: {
-      labels: data.map((row) => row.year),
-      datasets: [
-        {
-          label: "Acquisitions by year",
-          data: data.map((row) => row.count),
-        },
-      ],
-    },
-  });
+  const data = {
+    labels: timeSeries.map((item) => item.date),
+    datasets: [
+      {
+        // label: "Acquisitions by year",
+        data: timeSeries.map((item) => item.rate),
+      },
+    ],
+  };
 
   return (
     <>
-      {JSON.stringify(timeSeries)}
-      <br></br>
-      {/* {console.log(chartRef.current.id)} */}
+      {/* {JSON.stringify(timeSeries)} */}
       <br></br>
       <div className="row">
         {props.selection.from} to {props.selection.to} Chart
@@ -85,7 +68,7 @@ const Graph = (props) => {
         <div className="col-sm-5"></div>
       </div>
       <div className="row">
-        <canvas id="chart" ref={chartRef}></canvas>
+        <Line data={data}></Line>
       </div>
     </>
   );
