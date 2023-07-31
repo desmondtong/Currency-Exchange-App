@@ -6,7 +6,7 @@ import useGet from "./Hooks/useGet";
 const todayDate = new Date().toISOString().split("T")[0];
 
 function App() {
-  // state for API endpoints
+  // state for API endpoints (GET)
   const [currSymbol, setcurrSymbol] = useState({});
   const [cryptoSymbol, setCryptoSymbol] = useState({});
 
@@ -49,7 +49,7 @@ function App() {
               ></Converter>
             </div>
             <div className="row border">
-              <Graph></Graph>
+              <Graph selection={selection} todayDate={todayDate}></Graph>
             </div>
           </div>
           <div className="col-sm-3 border">WATCHLIST</div>
