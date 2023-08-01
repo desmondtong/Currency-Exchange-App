@@ -12,13 +12,19 @@ const Watchlist = (props) => {
   const [favCurr, setFavCurr] = useState(["USD", "EUR", "JPY", "MYR"]);
 
   // function
-  const handleFavCurr = (isRemove) => {
+  const handleFavCurr = (event, isRemove = false) => {
     if (isRemove) {
-      console.log("REMOVE");
-    } else {
       setFavCurr((currState) => {
-        return [...currState, selectRef.current.value];
+        return [...currState].toSpliced(event.target.id, 1);
       });
+    } else {
+      if (favCurr.includes(selectRef.current.value)) {
+        alert(`${selectRef.current.value} is already added!`);
+      } else {
+        setFavCurr((currState) => {
+          return [...currState, selectRef.current.value];
+        });
+      }
     }
   };
 
@@ -112,7 +118,8 @@ const Watchlist = (props) => {
                 <div className="col-sm-3">graph</div>
                 <button
                   className="col-sm-1 del-btn btn btn-outline-danger"
-                  onClick={() => handleFavCurr(true)}
+                  onClick={(event) => handleFavCurr(event, true)}
+                  id={idx}
                 >
                   -
                 </button>
@@ -134,7 +141,7 @@ const Watchlist = (props) => {
             <div className="col-sm-7"></div>
             <button
               className="col-sm-2 timeframe-btn btn btn-outline-success"
-              onClick={() => handleFavCurr(false)}
+              onClick={(event) => handleFavCurr(event)}
             >
               +
             </button>
