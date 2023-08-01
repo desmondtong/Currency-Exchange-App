@@ -186,9 +186,9 @@ const Watchlist = (props) => {
     <>
       {/* {JSON.stringify(watchlist)} */}
       {/* {JSON.stringify(dataObj)} */}
-      <div className="row padding-3">
+      <div className="row padding-tb">
         <div className="col-sm-9">
-          <h4>Watchlist</h4>
+          <h4>Exchange Rate Watchlist</h4>
         </div>
         <div className="col-sm-3">
           <button
@@ -199,11 +199,6 @@ const Watchlist = (props) => {
           </button>
         </div>
       </div>
-      <div className="row">
-        <div className="col-sm-3">Currency</div>
-        <div className="col-sm-3">Rate</div>
-        <div className="col-sm-6">{"Change%(1Y)"}</div>
-      </div>
       <div className="row base-currency">
         <div className="col-sm-3">{baseCurr}</div>
         <div className="col-sm-3"></div>
@@ -212,6 +207,13 @@ const Watchlist = (props) => {
       </div>
 
       <ul className="list-group list-group-flush">
+        <li className="list-group-item">
+          <div className="row header">
+            <div className="col-sm-2">Sym.</div>
+            <div className="col-sm-3">Rate</div>
+            <div className="col-sm-7">Change% (1Y)</div>
+          </div>
+        </li>
         {favCurr.map((item, idx) => {
           return (
             <li

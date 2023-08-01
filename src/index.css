@@ -10,7 +10,7 @@ html {
 
 body {
   margin: auto;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .centered {
@@ -22,8 +22,10 @@ body {
 }
 
 .border {
-  border-style: solid;
-  border-color: black;
+  border-radius: 1rem;
+
+  margin: 0.7rem 0;
+  background-color: white;
 }
 
 /* button */
@@ -71,15 +73,32 @@ body {
   height: 4rem;
 }
 
+.header {
+  font-size: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  align-items: center;
+}
+
 li {
   border-radius: 5%;
 }
 
-.padding-3 {
-  padding: 1rem 0 0 0;
+.padding-1 {
+  padding: 1rem 0 1rem 1.4rem;
 }
 
+.padding-tb {
+  padding: 1rem 0;
+}
+
+/* input & select */
 .boxes {
   margin: 0.3rem 0;
-  padding: 0.2rem 0.7rem;
+  padding: 0.3rem 0.7rem;
+
+  border-radius: 1rem;
+  border-width: 1px;
+  border-style: none;
+  background-color: lightskyblue;
 }

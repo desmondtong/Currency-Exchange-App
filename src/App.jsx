@@ -50,7 +50,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-sm-9">
-            <div className="row padding-3">
+            <div className="row padding-1 border shadow">
               <Converter
                 currSymbol={currSymbol}
                 cryptoSymbol={cryptoSymbol}
@@ -61,7 +61,7 @@ function App() {
                 todayDate={todayDate}
               ></Converter>
             </div>
-            <div className="row padding-3">
+            <div className="row padding-1 border shadow">
               <Graph
                 selection={selection}
                 setSelection={setSelection}
@@ -70,7 +70,7 @@ function App() {
               ></Graph>
             </div>
           </div>
-          <div className="col-sm-3 border">
+          <div className="col-sm-3 border shadow">
             <Watchlist
               todayDate={todayDate}
               historyDate={historyDate}
