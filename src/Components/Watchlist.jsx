@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import useGet from "../Hooks/useGet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Watchlist = (props) => {
   const selectRef = useRef();
@@ -97,10 +100,10 @@ const Watchlist = (props) => {
         </div>
         <div className="col-sm-3">
           <button
-            className="timeframe-btn btn btn-outline-primary"
+            className="edit-btn btn btn-outline-primary"
             onClick={handleEdit}
           >
-            Edit
+            <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         </div>
       </div>
@@ -146,11 +149,11 @@ const Watchlist = (props) => {
                 <div className="col-sm-3">graph</div>
                 {isEdit && (
                   <button
-                    className="col-sm-1 del-btn btn btn-outline-danger"
+                    className="col-sm-1 del-btn btn btn-danger"
                     onClick={(event) => handleFavCurr(event, true)}
                     id={idx}
                   >
-                    -
+                    <FontAwesomeIcon icon={faTrashCan} />
                   </button>
                 )}
               </div>
@@ -170,7 +173,7 @@ const Watchlist = (props) => {
             </select>
             <div className="col-sm-7"></div>
             <button
-              className="col-sm-2 timeframe-btn btn btn-outline-success"
+              className="col-sm-2 del-btn btn btn-outline-success"
               onClick={(event) => handleFavCurr(event)}
             >
               +
