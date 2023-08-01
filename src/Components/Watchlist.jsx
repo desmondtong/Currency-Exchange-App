@@ -223,12 +223,14 @@ const Watchlist = (props) => {
             >
               <div className="row fav-currency">
                 <div
-                  className={isEdit ? "col-sm-2" : "col-sm-3"}
+                  className={isEdit ? "col-sm-2" : "col-sm-2"}
                   onClick={handleBaseCurr}
                 >
                   {item}
                 </div>
-                <div className="col-sm-3">{watchlist[item]?.rate}</div>
+                <div className={isEdit ? "col-sm-2" : "col-sm-3"}>
+                  {watchlist[item]?.rate}
+                </div>
                 <div
                   className={isEdit ? "col-sm-2" : "col-sm-3"}
                   style={{
@@ -237,7 +239,7 @@ const Watchlist = (props) => {
                 >
                   {watchlist[item]?.fluctuation}
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-4">
                   <Line data={dataObj[item]} options={options}></Line>
                 </div>
 

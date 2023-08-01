@@ -67,10 +67,11 @@ body {
 
 .fav-currency {
   font-size: 0.8rem;
+  align-items: center;
 }
 
 li {
-  border-radius: 10%;
+  border-radius: 5%;
 }
 
 .padding-3 {
