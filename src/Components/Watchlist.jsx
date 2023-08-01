@@ -1,13 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import useGet from "../Hooks/useGet";
 
 const Watchlist = (props) => {
+  const selectRef = useRef();
+
   // state for API endpoints (GET)
   const [watchlist, setWatchlist] = useState({});
 
   // state
   const [baseCurr, setBaseCurr] = useState("SGD");
   const [favCurr, setFavCurr] = useState(["USD", "EUR", "JPY", "MYR"]);
+
+  // function
+  const handleFavCurr = (isRemove) => {
+    if (isRemove) {
+      console.log("REMOVE");
+    } else {
+      setFavCurr((currState) => {
+        return [...currState, selectRef.current.value];
+      });
+    }
+  };
 
   // function to call API
   const getData = useGet();
@@ -43,7 +56,7 @@ const Watchlist = (props) => {
 
   useEffect(() => {
     getWatchlistData();
-  }, []);
+  }, [favCurr]);
 
   return (
     <>
@@ -52,7 +65,9 @@ const Watchlist = (props) => {
           <h4>Watchlist</h4>
         </div>
         <div className="col-sm-3">
-          <button>Edit</button>
+          <button className="timeframe-btn btn btn-outline-secondary">
+            Edit
+          </button>
         </div>
       </div>
       <div className="row">
@@ -95,10 +110,36 @@ const Watchlist = (props) => {
                   {watchlist[item]?.fluctuation}
                 </div>
                 <div className="col-sm-3">graph</div>
+                <button
+                  className="col-sm-1 del-btn btn btn-outline-danger"
+                  onClick={() => handleFavCurr(true)}
+                >
+                  -
+                </button>
               </div>
             </li>
           );
         })}
+        <li className="list-group-item">
+          <div className="row fav-currency">
+            <select className="col-sm-3" ref={selectRef}>
+              {Object.values(props.currSymbol).map((item, idx) => {
+                return (
+                  <option key={idx} value={item.code}>
+                    {item.code}
+                  </option>
+                );
+              })}
+            </select>
+            <div className="col-sm-7"></div>
+            <button
+              className="col-sm-2 timeframe-btn btn btn-outline-success"
+              onClick={() => handleFavCurr(false)}
+            >
+              +
+            </button>
+          </div>
+        </li>
       </ul>
     </>
   );

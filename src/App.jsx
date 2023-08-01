@@ -74,6 +74,7 @@ function App() {
             <Watchlist
               todayDate={todayDate}
               historyDate={historyDate}
+              currSymbol={currSymbol}
             ></Watchlist>
           </div>
         </div>
