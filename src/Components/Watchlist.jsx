@@ -137,19 +137,26 @@ const Watchlist = (props) => {
 
   const options = {
     responsive: true,
+    events: [],
     plugins: {
       legend: {
         display: false,
       },
     },
+    // remove point/dot from line chart
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
     scales: {
-      // to remove the labels
+      // remove x-axis labels
       x: {
         ticks: {
           display: false,
         },
 
-        // to remove the x-axis grid
+        // remove x-axis grid
         grid: {
           display: false,
         },
@@ -157,13 +164,13 @@ const Watchlist = (props) => {
           display: false,
         },
       },
-      // to remove the y-axis labels
+      // remove y-axis labels
       y: {
         ticks: {
           display: false,
           beginAtZero: true,
         },
-        // to remove the y-axis grid
+        // remove y-axis grid
         grid: {
           display: false,
         },
