@@ -58,7 +58,7 @@ const Graph = (props) => {
   }, [props.selection]);
 
   const data = {
-    labels: timeSeries.map((item) => item.date),
+    labels: timeSeries.map((item) => item.date.slice(4)),
     datasets: [
       {
         label: "abc",
@@ -74,21 +74,10 @@ const Graph = (props) => {
         display: false,
       },
     },
-
-    scales: {
-      //   x: {
-      //     ticks: {
-      //       callback: (value) => {
-      //         return this.getLabelForValue(value).slice(0, 4);
-      //       },
-      //     },
-      //   },
-    },
   };
 
   return (
     <>
-      {/* {JSON.stringify(props.selection)} */}
       {/* <br></br> */}
       <div className="row">
         <h4>
