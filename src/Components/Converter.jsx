@@ -93,7 +93,7 @@ const Converter = (props) => {
       <div className="row">
         <label className="col-sm-1">Date:</label>
         <input
-          className="col-sm-4"
+          className="col-sm-4 boxes"
           type="date"
           defaultValue={props.todayDate}
           max={props.todayDate}

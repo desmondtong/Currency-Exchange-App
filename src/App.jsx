@@ -50,7 +50,7 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-sm-9">
-            <div className="row border">
+            <div className="row border padding-3">
               <Converter
                 currSymbol={currSymbol}
                 cryptoSymbol={cryptoSymbol}
@@ -61,7 +61,7 @@ function App() {
                 todayDate={todayDate}
               ></Converter>
             </div>
-            <div className="row border">
+            <div className="row border padding-3">
               <Graph
                 selection={selection}
                 setSelection={setSelection}

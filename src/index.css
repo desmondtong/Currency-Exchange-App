@@ -10,7 +10,7 @@ html {
 
 body {
   margin: auto;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .centered {
@@ -31,4 +31,27 @@ body {
   border-radius: 40%;
   width: 35px;
   padding: 0;
+}
+
+.base-currency {
+  background-color: lightgrey;
+  font-weight: bold;
+  padding: 0.2rem 0;
+}
+
+.fav-currency {
+  font-size: 0.8rem;
+}
+
+li {
+  border-radius: 10%;
+}
+
+.padding-3 {
+  padding: 1rem 0 0 0;
+}
+
+.boxes {
+  margin: 0.3rem 0;
+  padding: 0.2rem 0.7rem;
 }
