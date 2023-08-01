@@ -61,18 +61,28 @@ const Graph = (props) => {
     labels: timeSeries.map((item) => item.date),
     datasets: [
       {
-        // label: "Acquisitions by year",
+        label: "abc",
         data: timeSeries.map((item) => item.rate),
       },
     ],
-    options: {
-      scales: {
-        x: {
-          ticks: {
-            callback: (value) => value.slice(4),
-          },
-        },
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
       },
+    },
+
+    scales: {
+      //   x: {
+      //     ticks: {
+      //       callback: (value) => {
+      //         return this.getLabelForValue(value).slice(0, 4);
+      //       },
+      //     },
+      //   },
     },
   };
 
@@ -119,7 +129,7 @@ const Graph = (props) => {
         <div className="col-sm-4"></div>
       </div>
       <div className="row">
-        <Line data={data}></Line>
+        <Line data={data} options={options}></Line>
       </div>
     </>
   );
