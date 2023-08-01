@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useGet from "../Hooks/useGet";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import Watchlist from "./Watchlist";
 
 const Graph = (props) => {
   // state for API endpoints (GET)
@@ -57,6 +58,7 @@ const Graph = (props) => {
     getGraphData(props.selection.timeframe);
   }, [props.selection]);
 
+  // graph chart data & options
   const data = {
     labels: timeSeries.map((item) => item.date.slice(4)),
     datasets: [
@@ -78,6 +80,7 @@ const Graph = (props) => {
 
   return (
     <>
+      {/* {JSON.stringify(timeSeries)} */}
       {/* <br></br> */}
       <div className="row">
         <h4>

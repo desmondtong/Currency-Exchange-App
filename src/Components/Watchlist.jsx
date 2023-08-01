@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import useGet from "../Hooks/useGet";
+import Chart from "chart.js/auto";
+import { Line } from "react-chartjs-2";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +12,7 @@ const Watchlist = (props) => {
 
   // state for API endpoints (GET)
   const [watchlist, setWatchlist] = useState({});
+  const [timeSeries, setTimeSeries] = useState({});
 
   // state
   const [baseCurr, setBaseCurr] = useState("SGD");
@@ -72,6 +76,11 @@ const Watchlist = (props) => {
       }&base=${baseCurr}&symbols=${favCurr}`
     );
 
+    // get time-series
+    favCurr.forEach((item) => {
+      getTimeSeries(baseCurr, item);
+    });
+
     // create data structure for setWatchlist
     const obj = favCurr.reduce((acc, item) => {
       const flucRoundUp =
@@ -88,12 +97,87 @@ const Watchlist = (props) => {
     setWatchlist(obj);
   };
 
+  const getTimeSeries = async (base, sym) => {
+    const dataTimeSeries = await getData(
+      `timeseries?start_date=${props.historyDate(0, 0, -1)}&end_date=${
+        props.todayDate
+      }&base=${base}&symbols=${sym}`
+    );
+
+    const data = Object.entries(dataTimeSeries.rates).map((item) => {
+      return {
+        date: new Date(item[0]).toDateString(),
+        rate: item[1][sym],
+      };
+    });
+
+    setTimeSeries((currState) => {
+      //   return [...currState, {[sym]: data} ];
+      return { ...currState, [sym]: data };
+    });
+  };
+
   useEffect(() => {
     getWatchlistData();
   }, [favCurr]);
 
+  // graph chart data & options
+  const dataObj = favCurr.reduce((acc, item) => {
+    acc[item] = {
+      labels: timeSeries[item]?.map((item) => item.date.slice(4)),
+      datasets: [
+        {
+          label: "abc",
+          data: timeSeries[item]?.map((item) => item.rate),
+        },
+      ],
+    };
+    return acc;
+  }, {});
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      // to remove the labels
+      x: {
+        ticks: {
+          display: false,
+        },
+
+        // to remove the x-axis grid
+        grid: {
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+      // to remove the y-axis labels
+      y: {
+        ticks: {
+          display: false,
+          beginAtZero: true,
+        },
+        // to remove the y-axis grid
+        grid: {
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+    },
+  };
+
   return (
     <>
+      {/* {JSON.stringify(watchlist)} */}
+      {/* {JSON.stringify(dataObj)} */}
       <div className="row padding-3">
         <div className="col-sm-9">
           <h4>Watchlist</h4>
@@ -146,7 +230,10 @@ const Watchlist = (props) => {
                 >
                   {watchlist[item]?.fluctuation}
                 </div>
-                <div className="col-sm-3">graph</div>
+                <div className="col-sm-3">
+                  <Line data={dataObj[item]} options={options}></Line>
+                </div>
+
                 {isEdit && (
                   <button
                     className="col-sm-1 del-btn btn btn-danger"
