@@ -10,6 +10,7 @@ const Watchlist = (props) => {
   // state
   const [baseCurr, setBaseCurr] = useState("SGD");
   const [favCurr, setFavCurr] = useState(["USD", "EUR", "JPY", "MYR"]);
+  const [isEdit, setIsEdit] = useState(false);
 
   // function
   const handleFavCurr = (event, isRemove = false) => {
@@ -26,6 +27,12 @@ const Watchlist = (props) => {
         });
       }
     }
+  };
+
+  const handleEdit = () => {
+    setIsEdit((currState) => {
+      return !currState;
+    });
   };
 
   // function to call API
@@ -71,7 +78,10 @@ const Watchlist = (props) => {
           <h4>Watchlist</h4>
         </div>
         <div className="col-sm-3">
-          <button className="timeframe-btn btn btn-outline-secondary">
+          <button
+            className="timeframe-btn btn btn-outline-primary"
+            onClick={handleEdit}
+          >
             Edit
           </button>
         </div>
@@ -101,14 +111,14 @@ const Watchlist = (props) => {
             >
               <div className="row fav-currency">
                 <div
-                  className="col-sm-3"
+                  className={isEdit ? "col-sm-2" : "col-sm-3"}
                   onClick={(event) => console.log(event.target.textContent)}
                 >
                   {item}
                 </div>
                 <div className="col-sm-3">{watchlist[item]?.rate}</div>
                 <div
-                  className="col-sm-3"
+                  className={isEdit ? "col-sm-2" : "col-sm-3"}
                   style={{
                     color: watchlist[item]?.fluctuation < 0 ? "red" : "green",
                   }}
@@ -116,13 +126,15 @@ const Watchlist = (props) => {
                   {watchlist[item]?.fluctuation}
                 </div>
                 <div className="col-sm-3">graph</div>
-                <button
-                  className="col-sm-1 del-btn btn btn-outline-danger"
-                  onClick={(event) => handleFavCurr(event, true)}
-                  id={idx}
-                >
-                  -
-                </button>
+                {isEdit && (
+                  <button
+                    className="col-sm-1 del-btn btn btn-outline-danger"
+                    onClick={(event) => handleFavCurr(event, true)}
+                    id={idx}
+                  >
+                    -
+                  </button>
+                )}
               </div>
             </li>
           );
