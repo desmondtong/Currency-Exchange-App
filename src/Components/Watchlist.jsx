@@ -29,6 +29,24 @@ const Watchlist = (props) => {
     }
   };
 
+  const handleBaseCurr = (event) => {
+    // remove the clicked symbol
+    setFavCurr((currState) => {
+      return [...currState].toSpliced(
+        favCurr.indexOf(event.target.textContent),
+        1
+      );
+    });
+
+    // add current baseCurr to favCurr
+    setFavCurr((currState) => {
+      return [...currState, baseCurr];
+    });
+
+    // update baseCurr to clicked symbol
+    setBaseCurr(event.target.textContent);
+  };
+
   const handleEdit = () => {
     setIsEdit((currState) => {
       return !currState;
@@ -112,7 +130,7 @@ const Watchlist = (props) => {
               <div className="row fav-currency">
                 <div
                   className={isEdit ? "col-sm-2" : "col-sm-3"}
-                  onClick={(event) => console.log(event.target.textContent)}
+                  onClick={handleBaseCurr}
                 >
                   {item}
                 </div>
