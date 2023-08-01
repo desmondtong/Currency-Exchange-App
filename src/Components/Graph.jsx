@@ -63,7 +63,6 @@ const Graph = (props) => {
     labels: timeSeries.map((item) => item.date.slice(4)),
     datasets: [
       {
-        label: "abc",
         data: timeSeries.map((item) => item.rate),
       },
     ],

@@ -4,7 +4,6 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Watchlist = (props) => {
@@ -22,6 +21,7 @@ const Watchlist = (props) => {
   // function
   const handleFavCurr = (event, isRemove = false) => {
     if (isRemove) {
+      console.log(event.target.id);
       setFavCurr((currState) => {
         return [...currState].toSpliced(event.target.id, 1);
       });
@@ -129,6 +129,7 @@ const Watchlist = (props) => {
         {
           label: "abc",
           data: timeSeries[item]?.map((item) => item.rate),
+          borderColor: watchlist[item]?.fluctuation < 0 ? "red" : "green",
         },
       ],
     };
@@ -232,7 +233,7 @@ const Watchlist = (props) => {
                   {watchlist[item]?.rate}
                 </div>
                 <div
-                  className={isEdit ? "col-sm-2" : "col-sm-3"}
+                  className={isEdit ? "col-sm-2" : "col-sm-2"}
                   style={{
                     color: watchlist[item]?.fluctuation < 0 ? "red" : "green",
                   }}
@@ -249,7 +250,7 @@ const Watchlist = (props) => {
                     onClick={(event) => handleFavCurr(event, true)}
                     id={idx}
                   >
-                    <FontAwesomeIcon icon={faTrashCan} />
+                    -
                   </button>
                 )}
               </div>
