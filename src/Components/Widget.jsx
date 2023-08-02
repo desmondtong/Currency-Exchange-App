@@ -68,7 +68,6 @@ const Widget = (props) => {
 
   return (
     <>
-      {/* {JSON.stringify(props.widgetInfo)} */}
       <div className="row widget border">
         <div className="row widget-item">
           <div className="col-sm-9">

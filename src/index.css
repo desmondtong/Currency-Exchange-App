@@ -85,6 +85,21 @@ body {
   border-color: white;
 }
 
+.border-empty {
+  border-style: dashed;
+  border-radius: 1rem;
+  border-color: lightgrey;
+
+  margin: 0.7rem 0;
+  background-color: white;
+
+  align-content: center;
+  justify-content: center;
+
+  color: lightgrey;
+  font-size: 1rem;
+}
+
 /* watchlist */
 .scroll {
   overflow-y: scroll;

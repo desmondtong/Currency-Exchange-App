@@ -4,6 +4,7 @@ import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
 import Watchlist from "./Components/Watchlist";
 import Widget from "./Components/Widget";
+import EmptyWidget from "./Components/EmptyWidget";
 
 const defaultCurrency = { from: "SGD", to: "MYR" };
 
@@ -22,7 +23,6 @@ function App() {
     date: todayDate,
     timeframe: "1Y",
   });
-
   const [widgetInfo, setWidgetInfo] = useState([]);
 
   // function to call API
@@ -50,7 +50,7 @@ function App() {
   return (
     <>
       <h1>Website name</h1>
-      {/* {JSON.stringify(widgetInfo)} */}
+      {JSON.stringify(widgetInfo)}
       <div className="container">
         <div className="row">
           <div className="col-sm-9">
@@ -88,6 +88,11 @@ function App() {
                     ></Widget>
                   );
                 })}
+                {Array.from("1".repeat(4 - widgetInfo.length)).map(
+                  (item, idx) => {
+                    return <EmptyWidget key={idx}></EmptyWidget>;
+                  }
+                )}
               </div>
             </div>
           </div>

@@ -65,7 +65,7 @@ const Graph = (props) => {
         return [...currState];
       } else {
         // control to max 4 widget
-        const arr= [...currState]
+        const arr = [...currState];
         arr.length === 4 && arr.shift();
         // add selection to widgets
         return [
