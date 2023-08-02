@@ -64,8 +64,12 @@ const Graph = (props) => {
         );
         return [...currState];
       } else {
+        // control to max 4 widget
+        const arr= [...currState]
+        arr.length === 4 && arr.shift();
+        // add selection to widgets
         return [
-          ...currState,
+          ...arr,
           {
             sym: `${props.selection.from}/${props.selection.to}`,
             fluctuation: fluctuation.chgPercentage,
