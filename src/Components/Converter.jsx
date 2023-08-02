@@ -98,7 +98,9 @@ const Converter = (props) => {
         </div>
       </div>
       <div className="row">
-        <label className="col-sm-1">Date:</label>
+        <label className="col-sm-1" style={{ alignSelf: 'center' }}>
+          Date:
+        </label>
         <input
           className="col-sm-4 boxes"
           type="date"

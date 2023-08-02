@@ -214,51 +214,53 @@ const Watchlist = (props) => {
             <div className="col-sm-7">Change% (1Y)</div>
           </div>
         </li>
-        {favCurr.map((item, idx) => {
-          return (
-            <li
-              className={
-                idx % 2
-                  ? "list-group-item list-group-item-action list-group-item-secondary"
-                  : "list-group-item list-group-item-action list-group-item-light"
-              }
-              key={idx}
-            >
-              <div className="row fav-currency">
-                <div
-                  className={isEdit ? "col-sm-2" : "col-sm-2"}
-                  onClick={handleBaseCurr}
-                >
-                  {item}
-                </div>
-                <div className={isEdit ? "col-sm-2" : "col-sm-3"}>
-                  {watchlist[item]?.rate}
-                </div>
-                <div
-                  className={isEdit ? "col-sm-2" : "col-sm-2"}
-                  style={{
-                    color: watchlist[item]?.fluctuation < 0 ? "red" : "green",
-                  }}
-                >
-                  {watchlist[item]?.fluctuation}
-                </div>
-                <div className="col-sm-4">
-                  <Line data={dataObj[item]} options={options}></Line>
-                </div>
-
-                {isEdit && (
-                  <button
-                    className="col-sm-1 del-btn btn btn-danger"
-                    onClick={(event) => handleFavCurr(event, true)}
-                    id={idx}
+        <div className="scroll">
+          {favCurr.map((item, idx) => {
+            return (
+              <li
+                className={
+                  idx % 2
+                    ? "list-group-item list-group-item-action list-group-item-secondary"
+                    : "list-group-item list-group-item-action list-group-item-light"
+                }
+                key={idx}
+              >
+                <div className="row fav-currency">
+                  <div
+                    className={isEdit ? "col-sm-2" : "col-sm-2"}
+                    onClick={handleBaseCurr}
                   >
-                    -
-                  </button>
-                )}
-              </div>
-            </li>
-          );
-        })}
+                    {item}
+                  </div>
+                  <div className={isEdit ? "col-sm-2" : "col-sm-3"}>
+                    {watchlist[item]?.rate}
+                  </div>
+                  <div
+                    className={isEdit ? "col-sm-2" : "col-sm-2"}
+                    style={{
+                      color: watchlist[item]?.fluctuation < 0 ? "red" : "green",
+                    }}
+                  >
+                    {watchlist[item]?.fluctuation}
+                  </div>
+                  <div className="col-sm-4">
+                    <Line data={dataObj[item]} options={options}></Line>
+                  </div>
+
+                  {isEdit && (
+                    <button
+                      className="col-sm-1 del-btn btn btn-danger"
+                      onClick={(event) => handleFavCurr(event, true)}
+                      id={idx}
+                    >
+                      -
+                    </button>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </div>
         <li className="list-group-item">
           <div className="row fav-currency">
             <select className="col-sm-3" ref={selectRef}>

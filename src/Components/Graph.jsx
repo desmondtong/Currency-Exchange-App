@@ -75,6 +75,13 @@ const Graph = (props) => {
         display: false,
       },
     },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+    },
   };
 
   return (

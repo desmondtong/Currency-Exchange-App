@@ -61,6 +61,11 @@ body {
 }
 
 /* watchlist */
+.scroll {
+  overflow-y: scroll;
+  height: 30rem;
+}
+
 .base-currency {
   background-color: lightgrey;
   font-weight: bold;
@@ -89,7 +94,7 @@ li {
 }
 
 .padding-tb {
-  padding: 1rem 0;
+  padding: 1rem 0 0 1rem;
 }
 
 /* input & select */
