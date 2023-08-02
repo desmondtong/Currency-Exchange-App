@@ -65,8 +65,19 @@ body {
   height: 32rem;
 }
 
+/* widget */
 .widget {
   height: 22%;
+  font-size: 0.7rem;
+}
+
+.widget-item {
+  padding: 0.5rem 0 0 0.5rem;
+}
+
+.widget-item-2 {
+  height: 4rem;
+  padding: 0;
 }
 
 /* watchlist */

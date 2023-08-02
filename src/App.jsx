@@ -23,6 +23,8 @@ function App() {
     timeframe: "1Y",
   });
 
+  const [widgetInfo, setWidgetInfo] = useState([]);
+
   // function to call API
   const getData = useGet();
 
@@ -63,16 +65,26 @@ function App() {
               ></Converter>
             </div>
             <div className="row padding-1 border shadow graph">
-              <div className="col-sm-9">
+              <div className="col-sm-10">
                 <Graph
                   selection={selection}
                   setSelection={setSelection}
                   todayDate={todayDate}
                   historyDate={historyDate}
+                  setWidgetInfo={setWidgetInfo}
                 ></Graph>
               </div>
-              <div className="col-sm-3">
-                <Widget></Widget>
+              <div className="col-sm-2">
+                {widgetInfo.map((item, idx) => {
+                  return (
+                    <Widget
+                      key={idx}
+                      sym={item.sym}
+                      fluctuation={item.fluctuation}
+                      data={item.data}
+                    ></Widget>
+                  );
+                })}
               </div>
             </div>
           </div>

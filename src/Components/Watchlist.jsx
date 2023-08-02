@@ -112,7 +112,6 @@ const Watchlist = (props) => {
     });
 
     setTimeSeries((currState) => {
-      //   return [...currState, {[sym]: data} ];
       return { ...currState, [sym]: data };
     });
   };

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import useGet from "../Hooks/useGet";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import Watchlist from "./Watchlist";
 
 const Graph = (props) => {
   // state for API endpoints (GET)
@@ -53,6 +52,30 @@ const Graph = (props) => {
     });
   };
 
+  const handleAddWidget = () => {
+    props.setWidgetInfo((currState) => {
+      if (
+        currState.some((item) => {
+          return item.sym == `${props.selection.from}/${props.selection.to}`;
+        })
+      ) {
+        alert(
+          `${props.selection.from}/${props.selection.to} is already added!`
+        );
+        return [...currState];
+      } else {
+        return [
+          ...currState,
+          {
+            sym: `${props.selection.from}/${props.selection.to}`,
+            fluctuation: fluctuation.chgPercentage,
+            data: data,
+          },
+        ];
+      }
+    });
+  };
+
   // useEffect
   useEffect(() => {
     getGraphData(props.selection.timeframe);
@@ -89,15 +112,26 @@ const Graph = (props) => {
       {/* {JSON.stringify(timeSeries)} */}
       {/* <br></br> */}
       <div className="row">
-        <h4>
-          {props.selection.from} to {props.selection.to} Chart{" "}
-          <span
-            style={{ color: fluctuation.chgPercentage < 0 ? "red" : "green" }}
-          >
-            {fluctuation.chgPercentage}%
-          </span>{" "}
-          {fluctuation.timeframe}
-        </h4>
+        <div className="col-sm-10">
+          <h4>
+            {props.selection.from} to {props.selection.to} Chart{" "}
+            <span
+              style={{ color: fluctuation.chgPercentage < 0 ? "red" : "green" }}
+            >
+              {fluctuation.chgPercentage}%
+            </span>{" "}
+            {fluctuation.timeframe}
+          </h4>
+        </div>
+        <button
+          className="col-sm-1 timeframe-btn btn btn-outline-secondary"
+          onClick={handleAddWidget}
+        >
+          +
+        </button>
+        <button className="col-sm-1 timeframe-btn btn btn-outline-secondary">
+          FC
+        </button>
       </div>
       <div className="row">
         <div className="col-sm-4"></div>
