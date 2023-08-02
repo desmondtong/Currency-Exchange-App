@@ -49,8 +49,8 @@ function App() {
 
   return (
     <>
-      <h1>website name</h1>
       <div className="container">
+      <h1>Curren-See</h1>
         <div className="row">
           <div className="col-sm-9">
             <div className="row padding-1 border shadow">
