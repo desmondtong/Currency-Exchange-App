@@ -3,6 +3,7 @@ import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
 import Watchlist from "./Components/Watchlist";
+import Widget from "./Components/Widget";
 
 const defaultCurrency = { from: "SGD", to: "MYR" };
 
@@ -61,13 +62,18 @@ function App() {
                 todayDate={todayDate}
               ></Converter>
             </div>
-            <div className="row padding-1 border shadow">
-              <Graph
-                selection={selection}
-                setSelection={setSelection}
-                todayDate={todayDate}
-                historyDate={historyDate}
-              ></Graph>
+            <div className="row padding-1 border shadow graph">
+              <div className="col-sm-9">
+                <Graph
+                  selection={selection}
+                  setSelection={setSelection}
+                  todayDate={todayDate}
+                  historyDate={historyDate}
+                ></Graph>
+              </div>
+              <div className="col-sm-3">
+                <Widget></Widget>
+              </div>
             </div>
           </div>
           <div className="col-sm-3 border shadow">

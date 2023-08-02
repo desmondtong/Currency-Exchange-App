@@ -60,10 +60,23 @@ body {
   height: 50px;
 }
 
+/* graph */
+.graph {
+  height: 32rem;
+}
+
+.widget {
+  height: 22%;
+}
+
 /* watchlist */
 .scroll {
   overflow-y: scroll;
   height: 30rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .base-currency {
