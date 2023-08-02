@@ -62,16 +62,19 @@ const Widget = (props) => {
     <>
       {/* {JSON.stringify(props.data.datasets[0])} */}
       <div className="row widget border">
-        <div className="widget-item">
-          {props.sym}
-          <br></br>
-          <span
-            style={{
-              color: props.fluctuation < 0 ? "red" : "green",
-            }}
-          >
-            {props.fluctuation}%
-          </span>
+        <div className="row widget-item">
+          <div className="col-sm-9">
+            {props.sym}
+            <br></br>
+            <span
+              style={{
+                color: props.fluctuation < 0 ? "red" : "green",
+              }}
+            >
+              {props.fluctuation}%
+            </span>
+          </div>
+          <button className="col-sm-1 btn del-btn remove-btn btn-outline-danger">-</button>
         </div>
         <div className="widget-item-2">
           <Line data={data()} options={options}></Line>
