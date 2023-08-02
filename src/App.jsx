@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Converter from "./Components/Converter";
 import Graph from "./Components/Graph";
 import useGet from "./Hooks/useGet";
@@ -50,6 +50,7 @@ function App() {
   return (
     <>
       <h1>Website name</h1>
+      {/* {JSON.stringify(widgetInfo)} */}
       <div className="container">
         <div className="row">
           <div className="col-sm-9">
@@ -79,9 +80,11 @@ function App() {
                   return (
                     <Widget
                       key={idx}
+                      id={idx}
                       sym={item.sym}
                       fluctuation={item.fluctuation}
                       data={item.data}
+                      setWidgetInfo={setWidgetInfo}
                     ></Widget>
                   );
                 })}
