@@ -49,8 +49,7 @@ function App() {
 
   return (
     <>
-      <h1>Website name</h1>
-      {JSON.stringify(widgetInfo)}
+      <h1>website name</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-9">

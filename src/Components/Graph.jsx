@@ -91,6 +91,8 @@ const Graph = (props) => {
     datasets: [
       {
         data: timeSeries.map((item) => item.rate),
+        borderColor: "rgba(149, 181, 209, 1)",
+        borderWidth: 1,
       },
     ],
   };

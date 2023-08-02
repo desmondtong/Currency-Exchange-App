@@ -129,6 +129,7 @@ const Watchlist = (props) => {
           label: "abc",
           data: timeSeries[item]?.map((item) => item.rate),
           borderColor: watchlist[item]?.fluctuation < 0 ? "red" : "green",
+          borderWidth: 1.5,
         },
       ],
     };

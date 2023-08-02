@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
 
+:root {
+  --grey: rgba(83, 83, 83, 1);
+  --blue: rgba(149, 181, 209, 1);
+  --lightblue: rgba(90, 134, 173, 0.5);
+  --lightblue2: rgba(90, 134, 173, 0.2);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,7 +17,7 @@ html {
 
 body {
   margin: auto;
-  background-color: whitesmoke;
+  background-color: var(--lightblue2);
 }
 
 .centered {
@@ -26,6 +33,10 @@ body {
 
   margin: 0.7rem 0;
   background-color: white;
+}
+
+h4 {
+  color: var(--grey);
 }
 
 /* button */
@@ -52,12 +63,18 @@ body {
   width: 30px;
   height: 30px;
   font-size: 0.8rem;
+
+  color: var(--blue);
+  border-color: var(--blue);
 }
 
 .reverse-btn {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+
+  color: var(--blue);
+  border-color: var(--blue);
 }
 
 /* graph */
@@ -69,6 +86,7 @@ body {
 .widget {
   height: 22%;
   font-size: 0.7rem;
+  background-color: var(--blue);
 }
 
 .widget-item {
@@ -81,8 +99,12 @@ body {
 }
 
 .remove-btn {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.widget-sym {
   color: white;
-  border-color: white;
 }
 
 .border-empty {
@@ -107,11 +129,27 @@ body {
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(200, 200, 200, 0.2);
+  border-radius: 2rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 200, 200, 0.5);
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 200, 200, 0.9);
 }
 
 .base-currency {
-  background-color: lightgrey;
+  background-color: var(--blue);
   font-weight: bold;
   padding: 0.2rem 0;
 }
@@ -127,6 +165,8 @@ body {
   height: 0.7rem;
   padding: 0;
   align-items: center;
+
+  color: var(--lightblue);
 }
 
 li {
@@ -149,5 +189,5 @@ li {
   border-radius: 1rem;
   border-width: 1px;
   border-style: none;
-  background-color: lightskyblue;
+  background-color: var(--lightblue2);
 }

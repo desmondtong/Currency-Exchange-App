@@ -58,9 +58,9 @@ const Widget = (props) => {
   };
 
   // add BorderColor
-  props.data.datasets[0].borderColor = "purple";
+  props.data.datasets[0].borderColor = "white";
   props.data.datasets[0].fill = true;
-  props.data.datasets[0].backgroundColor = "lightgrey";
+  props.data.datasets[0].backgroundColor = "rgba(255,255,255,0.2)";
 
   const data = () => {
     return props.data;
@@ -70,7 +70,7 @@ const Widget = (props) => {
     <>
       <div className="row widget border">
         <div className="row widget-item">
-          <div className="col-sm-9">
+          <div className="col-sm-9 widget-sym">
             {props.sym}
             <br></br>
             <span
