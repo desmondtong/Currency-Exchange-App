@@ -159,7 +159,12 @@ h4 {
 .base-currency {
   background-color: var(--blue);
   font-weight: bold;
+  color: var(--grey);
   padding: 0.2rem 0;
+
+  height: 3rem;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 .fav-currency {
