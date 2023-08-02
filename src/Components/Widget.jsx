@@ -93,7 +93,7 @@ const Widget = (props) => {
             ({props.timeframe})
           </div>
           <button
-            className="col-sm-1 btn del-btn remove-btn btn-outline-danger"
+            className="col-sm-1 btn remove-btn btn-outline-danger"
             id={props.id}
             onClick={handleDel}
           >
