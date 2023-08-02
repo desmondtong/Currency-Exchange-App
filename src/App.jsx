@@ -50,7 +50,7 @@ function App() {
   return (
     <>
       <div className="container">
-      <h1>Curren-See</h1>
+        <h1>Curren-See</h1>
         <div className="row">
           <div className="col-sm-9">
             <div className="row padding-1 border shadow">
@@ -83,7 +83,9 @@ function App() {
                       sym={item.sym}
                       fluctuation={item.fluctuation}
                       data={item.data}
+                      timeframe={item.timeframe}
                       setWidgetInfo={setWidgetInfo}
+                      setSelection={setSelection}
                     ></Widget>
                   );
                 })}

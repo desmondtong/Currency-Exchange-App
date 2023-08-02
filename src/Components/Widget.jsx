@@ -9,6 +9,16 @@ const Widget = (props) => {
       return [...currState].toSpliced(event.target.id, 1);
     });
   };
+  const handleDisplay = () => {
+    props.setSelection((currState) => {
+      return {
+        ...currState,
+        from: props.sym.slice(0, 3),
+        to: props.sym.slice(4),
+        timeframe: props.timeframe,
+      };
+    });
+  };
 
   // graph chart options & data
   const options = {
@@ -68,7 +78,7 @@ const Widget = (props) => {
 
   return (
     <>
-      <div className="row widget widget-hover border">
+      <div className="row widget widget-hover border" onClick={handleDisplay}>
         <div className="row widget-item">
           <div className="col-sm-9 widget-sym">
             {props.sym}
@@ -80,6 +90,7 @@ const Widget = (props) => {
             >
               {props.fluctuation}%
             </span>
+            ({props.timeframe})
           </div>
           <button
             className="col-sm-1 btn del-btn remove-btn btn-outline-danger"

@@ -56,7 +56,10 @@ const Graph = (props) => {
     props.setWidgetInfo((currState) => {
       if (
         currState.some((item) => {
-          return item.sym == `${props.selection.from}/${props.selection.to}`;
+          return (
+            (item.sym == `${props.selection.from}/${props.selection.to}`) &
+            (item.timeframe == props.selection.timeframe)
+          );
         })
       ) {
         alert(
@@ -74,6 +77,7 @@ const Graph = (props) => {
             sym: `${props.selection.from}/${props.selection.to}`,
             fluctuation: fluctuation.chgPercentage,
             data: data,
+            timeframe: props.selection.timeframe,
           },
         ];
       }
@@ -122,7 +126,9 @@ const Graph = (props) => {
           <h4>
             {props.selection.from} to {props.selection.to} Chart{" "}
             <span
-              style={{ color: fluctuation.chgPercentage < 0 ? "red" : "green" }}
+              style={{
+                color: fluctuation.chgPercentage < 0 ? "red" : "green",
+              }}
             >
               {fluctuation.chgPercentage}%
             </span>{" "}
