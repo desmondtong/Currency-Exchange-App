@@ -237,7 +237,7 @@ const CurrencyCard = (props) => {
           {Object.values(props.currSymbol).map((item, idx) => {
             return (
               <option key={idx} value={item.code}>
-                {`${emojiFlags[item.code]} ${item.code} - ${item.description}`}
+                {`${item.code} - ${item.description} ${emojiFlags[item.code]}`}
               </option>
             );
           })}
