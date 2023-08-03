@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=Open+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap");
 
 :root {
   --grey: rgba(83, 83, 83, 1);
@@ -6,20 +6,22 @@
   --blue: rgba(149, 181, 209, 1);
   --lightblue: rgba(90, 134, 173, 0.5);
   --lightblue2: rgba(90, 134, 173, 0.2);
-  --bgm: rgb(217, 223, 226);
+  --bgm: rgb(239, 239, 239);
+  --components: white;
+  --font1: "Lato", sans-serif;
+  --font2: "Nunito Sans", sans-serif;
+  --font3: "Open Sans", sans-serif;
+  --font4: "Raleway", sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  font-family: "Oxygen", sans-serif;
-}
-
 body {
   margin: auto;
   background-color: var(--bgm);
+  font-family: var(--font2);
 }
 
 .centered {
@@ -31,7 +33,7 @@ body {
   border-radius: 1rem;
 
   margin: 0.7rem 0;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--components);
 }
 
 h4 {
@@ -207,4 +209,10 @@ li {
 
 .boxes-h:hover {
   background-color: var(--lightblue);
+}
+
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }

@@ -232,7 +232,7 @@ const CurrencyCard = (props) => {
         <select
           value={currSelect}
           onChange={handleSelect}
-          className="boxes boxes-h"
+          className="boxes boxes-h select"
         >
           {Object.values(props.currSymbol).map((item, idx) => {
             return (

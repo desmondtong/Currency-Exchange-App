@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import useGet from "../Hooks/useGet";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +20,10 @@ const Watchlist = (props) => {
   const [favCurr, setFavCurr] = useState(["USD", "EUR", "JPY", "MYR"]);
   const [isEdit, setIsEdit] = useState(false);
 
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openDel, setOpenDel] = useState(false);
+  const [openRepeat, setOpenRepeat] = useState(false);
+
   // function
   const handleFavCurr = (event, isRemove = false) => {
     if (isRemove) {
@@ -25,13 +31,15 @@ const Watchlist = (props) => {
       setFavCurr((currState) => {
         return [...currState].toSpliced(event.target.id, 1);
       });
+      setOpenDel(true);
     } else {
       if (favCurr.includes(selectRef.current.value)) {
-        alert(`${selectRef.current.value} is already added!`);
+        setOpenRepeat(true);
       } else {
         setFavCurr((currState) => {
           return [...currState, selectRef.current.value];
         });
+        setOpenAdd(true);
       }
     }
   };
@@ -39,26 +47,44 @@ const Watchlist = (props) => {
   const handleBaseCurr = (event) => {
     // update baseCurr to clicked symbol
     setBaseCurr(favCurr[event.target.id]);
-    
+
     // remove the clicked symbol
     setFavCurr((currState) => {
-      return [...currState].toSpliced(
-        event.target.id,
-        1
-      );
+      return [...currState].toSpliced(event.target.id, 1);
     });
 
     // add current baseCurr to favCurr
     setFavCurr((currState) => {
       return [...currState, baseCurr];
     });
-
   };
 
   const handleEdit = () => {
     setIsEdit((currState) => {
       return !currState;
     });
+  };
+
+  // snackbar
+  const handleCloseAdd = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenAdd(false);
+  };
+
+  const handleCloseDel = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenDel(false);
+  };
+
+  const handleCloseRepeat = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenRepeat(false);
   };
 
   // function to call API
@@ -455,6 +481,45 @@ const Watchlist = (props) => {
             >
               +
             </button>
+            <Snackbar
+              open={openAdd}
+              autoHideDuration={6000}
+              onClose={handleCloseAdd}
+            >
+              <Alert
+                onClose={handleCloseAdd}
+                severity="success"
+                sx={{ width: "20%" }}
+              >
+                Symbol successfully added!
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              open={openDel}
+              autoHideDuration={6000}
+              onClose={handleCloseDel}
+            >
+              <Alert
+                onClose={handleCloseDel}
+                severity="success"
+                sx={{ width: "20%" }}
+              >
+                Symbol successfully removed!
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              open={openRepeat}
+              autoHideDuration={6000}
+              onClose={handleCloseRepeat}
+            >
+              <Alert
+                onClose={handleCloseRepeat}
+                severity="warning"
+                sx={{ width: "20%" }}
+              >
+                Item already exist!
+              </Alert>
+            </Snackbar>
           </div>
         </li>
       </ul>
