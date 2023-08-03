@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Converter from "./Components/Converter";
-import Graph from "./Components/Graph";
-import useGet from "./Hooks/useGet";
-import Watchlist from "./Components/Watchlist";
-import Widget from "./Components/Widget";
-import EmptyWidget from "./Components/EmptyWidget";
+import Converter from "../Components/Converter";
+import Graph from "../Components/Graph";
+import useGet from "../Hooks/useGet";
+import Watchlist from "../Components/Watchlist";
+import Widget from "../Components/Widget";
+import EmptyWidget from "../Components/EmptyWidget";
 
 const defaultCurrency = { from: "SGD", to: "MYR" };
 
 const todayDate = new Date().toISOString().split("T")[0];
 
-function App() {
+function Main() {
   // state for API endpoints (GET)
   const [currSymbol, setcurrSymbol] = useState({});
   const [cryptoSymbol, setCryptoSymbol] = useState({});
@@ -110,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
