@@ -42,7 +42,6 @@ const Converter = (props) => {
   //use effect
   useEffect(() => {
     props.getCurrSymbol();
-    props.getCryptoSymbol();
     console.log("useEff run");
   }, []);
 
@@ -67,7 +66,6 @@ const Converter = (props) => {
         <div className="col-sm-5">
           <CurrencyCard
             currSymbol={props.currSymbol}
-            cryptoSymbol={props.cryptoSymbol}
             setSelection={props.setSelection}
             selection={props.selection}
             setReverse={setReverse}
@@ -86,7 +84,6 @@ const Converter = (props) => {
         <div className="col-sm-5">
           <CurrencyCard
             currSymbol={props.currSymbol}
-            cryptoSymbol={props.cryptoSymbol}
             setSelection={props.setSelection}
             selection={props.selection}
             setReverse={setReverse}

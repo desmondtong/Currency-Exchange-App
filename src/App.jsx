@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import useGet from "./Hooks/useGet";
 import NavBar from "./Components/NavBar";
 import Main from "./Pages/Main";
 import FullGraph from "./Pages/FullGraph";
@@ -10,6 +11,9 @@ const App = () => {
   const defaultCurrency = { from: "SGD", to: "MYR" };
   const todayDate = new Date().toISOString().split("T")[0];
 
+  // state for API endpoints (GET)
+  const [currSymbol, setcurrSymbol] = useState({});
+
   // state
   const [selection, setSelection] = useState({
     from: defaultCurrency.from,
@@ -19,6 +23,14 @@ const App = () => {
     timeframe: "1Y",
   });
   const [widgetInfo, setWidgetInfo] = useState([]);
+
+  // function to call API
+  const getData = useGet();
+
+  const getCurrSymbol = async () => {
+    const data = await getData("symbols");
+    setcurrSymbol(data.symbols);
+  };
 
   // subtract date
   const historyDate = (days, months, years) => {
@@ -44,10 +56,20 @@ const App = () => {
                 historyDate={historyDate}
                 widgetInfo={widgetInfo}
                 setWidgetInfo={setWidgetInfo}
+                currSymbol={currSymbol}
+                getCurrSymbol={getCurrSymbol}
               />
             }
           ></Route>
-          <Route path="/converter" element={<FullConverter />}></Route>
+          <Route
+            path="/converter"
+            element={
+              <FullConverter
+                currSymbol={currSymbol}
+                getCurrSymbol={getCurrSymbol}
+              />
+            }
+          ></Route>
           <Route
             path="/graph"
             element={

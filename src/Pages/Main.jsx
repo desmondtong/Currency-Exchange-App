@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import Converter from "../Components/Converter";
 import Graph from "../Components/Graph";
-import useGet from "../Hooks/useGet";
 import Watchlist from "../Components/Watchlist";
 import Widget from "../Components/Widget";
 import EmptyWidget from "../Components/EmptyWidget";
 
 function Main(props) {
-  // state for API endpoints (GET)
-  const [currSymbol, setcurrSymbol] = useState({});
-  const [cryptoSymbol, setCryptoSymbol] = useState({});
+  // // state for API endpoints (GET)
+  // const [currSymbol, setcurrSymbol] = useState({});
 
-  // function to call API
-  const getData = useGet();
+  // // function to call API
+  // const getData = useGet();
 
-  const getCurrSymbol = async () => {
-    const data = await getData("symbols");
-    setcurrSymbol(data.symbols);
-  };
-
-  const getCryptoSymbol = async () => {
-    const data = await getData("cryptocurrencies");
-    setCryptoSymbol(data.cryptocurrencies);
-  };
+  // const getCurrSymbol = async () => {
+  //   const data = await getData("symbols");
+  //   setcurrSymbol(data.symbols);
+  // };
 
   return (
     <>
@@ -31,10 +24,8 @@ function Main(props) {
           <div className="col-sm-9">
             <div className="row padding-1 border shadow">
               <Converter
-                currSymbol={currSymbol}
-                cryptoSymbol={cryptoSymbol}
-                getCurrSymbol={getCurrSymbol}
-                getCryptoSymbol={getCryptoSymbol}
+                currSymbol={props.currSymbol}
+                getCurrSymbol={props.getCurrSymbol}
                 selection={props.selection}
                 setSelection={props.setSelection}
                 todayDate={props.todayDate}
@@ -78,7 +69,7 @@ function Main(props) {
             <Watchlist
               todayDate={props.todayDate}
               historyDate={props.historyDate}
-              currSymbol={currSymbol}
+              currSymbol={props.currSymbol}
             ></Watchlist>
           </div>
         </div>
