@@ -148,6 +148,11 @@ const Graph = (props) => {
             </button>
           </>
         )}
+        {!props.isDashboard && (
+          <p className="col-sm-2 last-update">
+            {`Last updated ${props.todayDate}`}
+          </p>
+        )}
       </div>
       <div className="row">
         <div className="col-sm-4"></div>
