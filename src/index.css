@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=Open+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Lato:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=Open+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap");
 
 :root {
   --grey: rgba(83, 83, 83, 1);
@@ -243,4 +243,10 @@ li {
   margin: 0;
 
   font-size: 0.7rem;
+}
+
+.about {
+  text-align: center;
+  margin: auto;
+  margin-top: 25%;
 }

@@ -135,6 +135,7 @@ const Graph = (props) => {
             {fluctuation.timeframe}
           </h4>
         </div>
+        {/* button only in dashboard */}
         {props.isDashboard && (
           <>
             <button
@@ -148,6 +149,7 @@ const Graph = (props) => {
             </button>
           </>
         )}
+        {/* last updated text only in Chart tab */}
         {!props.isDashboard && (
           <p className="col-sm-2 last-update">
             {`Last updated ${props.todayDate}`}
