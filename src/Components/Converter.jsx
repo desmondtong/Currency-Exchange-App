@@ -95,6 +95,10 @@ const Converter = (props) => {
           ref={dateRef}
           onChange={handleDate}
         ></input>
+        <div className="col-sm-2"></div>
+        <p className="col-sm-5 last-update">
+         {`Last updated ${props.todayDate}`}
+        </p>
       </div>
     </>
   );

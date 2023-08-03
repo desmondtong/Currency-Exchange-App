@@ -236,3 +236,11 @@ li {
   height: 2.8rem;
   align-items: center;
 }
+
+.last-update {
+  text-align: end;
+  align-self: end;
+  margin: 0;
+
+  font-size: 0.7rem;
+}
