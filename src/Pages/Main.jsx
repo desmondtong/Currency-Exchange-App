@@ -49,8 +49,7 @@ function Main() {
 
   return (
     <>
-      <div className="container">
-        <h1>CurrenSee</h1>
+      {/* <div className="container"> */}
         <div className="row">
           <div className="col-sm-9">
             <div className="row padding-1 border shadow">
@@ -105,7 +104,7 @@ function Main() {
             ></Watchlist>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }
