@@ -1,10 +1,16 @@
 import React from "react";
 import Graph from "../Components/Graph";
 
-const FullGraph = () => {
+const FullGraph = (props) => {
   return (
     <>
-      <Graph></Graph>
+      <Graph
+        selection={props.selection}
+        setSelection={props.setSelection}
+        todayDate={props.todayDate}
+        historyDate={props.historyDate}
+        setWidgetInfo={props.setWidgetInfo}
+      ></Graph>
     </>
   );
 };

@@ -483,7 +483,7 @@ const Watchlist = (props) => {
             </button>
             <Snackbar
               open={openAdd}
-              autoHideDuration={6000}
+              autoHideDuration={3000}
               onClose={handleCloseAdd}
             >
               <Alert
@@ -496,7 +496,7 @@ const Watchlist = (props) => {
             </Snackbar>
             <Snackbar
               open={openDel}
-              autoHideDuration={6000}
+              autoHideDuration={3000}
               onClose={handleCloseDel}
             >
               <Alert
@@ -509,7 +509,7 @@ const Watchlist = (props) => {
             </Snackbar>
             <Snackbar
               open={openRepeat}
-              autoHideDuration={6000}
+              autoHideDuration={3000}
               onClose={handleCloseRepeat}
             >
               <Alert

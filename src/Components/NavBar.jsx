@@ -15,14 +15,22 @@ const NavBar = () => {
               Dashboard
             </NavLink>
           </li>
-          {/* <li>
+          <li>
+            <NavLink
+              className={(navData) => (navData.isActive ? styles.active : "")}
+              to="/converter"
+            >
+              Converter
+            </NavLink>
+          </li>
+          <li>
             <NavLink
               className={(navData) => (navData.isActive ? styles.active : "")}
               to="/graph"
             >
               Chart
             </NavLink>
-          </li> */}
+          </li>
           <li>
             <NavLink
               className={(navData) => (navData.isActive ? styles.active : "")}

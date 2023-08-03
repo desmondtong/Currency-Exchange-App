@@ -16,6 +16,7 @@
 .navbar {
   height: 3.4rem;
   background-color: var(--blue);
+  margin: 0 0 2rem 0;
 }
 
 .navbar nav {

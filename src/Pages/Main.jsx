@@ -6,24 +6,10 @@ import Watchlist from "../Components/Watchlist";
 import Widget from "../Components/Widget";
 import EmptyWidget from "../Components/EmptyWidget";
 
-const defaultCurrency = { from: "SGD", to: "MYR" };
-
-const todayDate = new Date().toISOString().split("T")[0];
-
-function Main() {
+function Main(props) {
   // state for API endpoints (GET)
   const [currSymbol, setcurrSymbol] = useState({});
   const [cryptoSymbol, setCryptoSymbol] = useState({});
-
-  // state
-  const [selection, setSelection] = useState({
-    from: defaultCurrency.from,
-    to: defaultCurrency.to,
-    amount: 1,
-    date: todayDate,
-    timeframe: "1Y",
-  });
-  const [widgetInfo, setWidgetInfo] = useState([]);
 
   // function to call API
   const getData = useGet();
@@ -38,15 +24,6 @@ function Main() {
     setCryptoSymbol(data.cryptocurrencies);
   };
 
-  // subtract date
-  const historyDate = (days, months, years) => {
-    var date = new Date();
-    date.setDate(date.getDate() + days);
-    date.setMonth(date.getMonth() + months);
-    date.setFullYear(date.getFullYear() + years);
-    return date.toISOString().split("T")[0];
-  };
-
   return (
     <>
       {/* <div className="container"> */}
@@ -58,23 +35,24 @@ function Main() {
                 cryptoSymbol={cryptoSymbol}
                 getCurrSymbol={getCurrSymbol}
                 getCryptoSymbol={getCryptoSymbol}
-                selection={selection}
-                setSelection={setSelection}
-                todayDate={todayDate}
+                selection={props.selection}
+                setSelection={props.setSelection}
+                todayDate={props.todayDate}
               ></Converter>
             </div>
             <div className="row padding-1 border shadow graph">
               <div className="col-sm-10">
                 <Graph
-                  selection={selection}
-                  setSelection={setSelection}
-                  todayDate={todayDate}
-                  historyDate={historyDate}
-                  setWidgetInfo={setWidgetInfo}
+                  selection={props.selection}
+                  setSelection={props.setSelection}
+                  todayDate={props.todayDate}
+                  historyDate={props.historyDate}
+                  setWidgetInfo={props.setWidgetInfo}
+                  isDashboard={true}
                 ></Graph>
               </div>
               <div className="col-sm-2">
-                {widgetInfo.map((item, idx) => {
+                {props.widgetInfo.map((item, idx) => {
                   return (
                     <Widget
                       key={idx}
@@ -83,12 +61,12 @@ function Main() {
                       fluctuation={item.fluctuation}
                       data={item.data}
                       timeframe={item.timeframe}
-                      setWidgetInfo={setWidgetInfo}
-                      setSelection={setSelection}
+                      setWidgetInfo={props.setWidgetInfo}
+                      setSelection={props.setSelection}
                     ></Widget>
                   );
                 })}
-                {Array.from("1".repeat(4 - widgetInfo.length)).map(
+                {Array.from("1".repeat(4 - props.widgetInfo.length)).map(
                   (item, idx) => {
                     return <EmptyWidget key={idx}></EmptyWidget>;
                   }
@@ -98,8 +76,8 @@ function Main() {
           </div>
           <div className="col-sm-3 border shadow">
             <Watchlist
-              todayDate={todayDate}
-              historyDate={historyDate}
+              todayDate={props.todayDate}
+              historyDate={props.historyDate}
               currSymbol={currSymbol}
             ></Watchlist>
           </div>

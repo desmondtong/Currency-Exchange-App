@@ -135,15 +135,19 @@ const Graph = (props) => {
             {fluctuation.timeframe}
           </h4>
         </div>
-        <button
-          className="col-sm-1 timeframe-btn btn btn-outline-secondary"
-          onClick={handleAddWidget}
-        >
-          +
-        </button>
-        <button className="col-sm-1 timeframe-btn btn btn-outline-secondary">
-          FC
-        </button>
+        {props.isDashboard && (
+          <>
+            <button
+              className="col-sm-1 timeframe-btn btn btn-outline-secondary"
+              onClick={handleAddWidget}
+            >
+              +
+            </button>
+            <button className="col-sm-1 timeframe-btn btn btn-outline-secondary">
+              FC
+            </button>
+          </>
+        )}
       </div>
       <div className="row">
         <div className="col-sm-4"></div>
