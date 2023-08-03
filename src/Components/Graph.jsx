@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import useGet from "../Hooks/useGet";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/material";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";
 
 const Graph = (props) => {
   // state for API endpoints (GET)
   const [timeSeries, setTimeSeries] = useState([]);
   const [fluctuation, setFluctuation] = useState({});
+
+  // state
+  const [openRepeat, setOpenRepeat] = useState(false);
 
   // function to call API
   const getData = useGet();
@@ -62,9 +71,10 @@ const Graph = (props) => {
           );
         })
       ) {
-        alert(
-          `${props.selection.from}/${props.selection.to} is already added!`
-        );
+        // alert(
+        //   `${props.selection.from}/${props.selection.to} is already added!`
+        // );
+        setOpenRepeat(true);
         return [...currState];
       } else {
         // control to max 4 widget
@@ -82,6 +92,13 @@ const Graph = (props) => {
         ];
       }
     });
+  };
+
+  const handleCloseRepeat = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenRepeat(false);
   };
 
   // useEffect
@@ -144,9 +161,17 @@ const Graph = (props) => {
             >
               +
             </button>
-            <button className="col-sm-1 timeframe-btn btn btn-outline-secondary">
-              FC
-            </button>
+            <a
+              className="col-sm-1 timeframe-btn btn btn-outline-secondary"
+              href="/graph"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon icon={faUpRightAndDownLeftFromCenter} />
+            </a>
           </>
         )}
         {/* last updated text only in Chart tab */}
@@ -186,6 +211,19 @@ const Graph = (props) => {
       <div className="row">
         <Line data={data} options={options}></Line>
       </div>
+      <Snackbar
+        open={openRepeat}
+        autoHideDuration={3000}
+        onClose={handleCloseRepeat}
+      >
+        <Alert
+          onClose={handleCloseRepeat}
+          severity="warning"
+          sx={{ width: "300px" }}
+        >
+          Item already exist!
+        </Alert>
+      </Snackbar>
     </>
   );
 };

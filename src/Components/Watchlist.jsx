@@ -315,7 +315,7 @@ const Watchlist = (props) => {
               <Alert
                 onClose={handleCloseAdd}
                 severity="success"
-                sx={{ width: "20%" }}
+                sx={{ width: "300px" }}
               >
                 Symbol successfully added!
               </Alert>
@@ -328,7 +328,7 @@ const Watchlist = (props) => {
               <Alert
                 onClose={handleCloseDel}
                 severity="success"
-                sx={{ width: "20%" }}
+                sx={{ width: "300px" }}
               >
                 Symbol successfully removed!
               </Alert>
@@ -341,7 +341,7 @@ const Watchlist = (props) => {
               <Alert
                 onClose={handleCloseRepeat}
                 severity="warning"
-                sx={{ width: "20%" }}
+                sx={{ width: "300px" }}
               >
                 Item already exist!
               </Alert>
