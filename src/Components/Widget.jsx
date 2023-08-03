@@ -78,7 +78,7 @@ const Widget = (props) => {
 
   return (
     <>
-      <div className="row widget widget-hover border" onClick={handleDisplay}>
+      <div className="row widget widget-hover border">
         <div className="row widget-item">
           <div className="col-sm-9 widget-sym">
             {props.sym}
@@ -100,7 +100,7 @@ const Widget = (props) => {
             -
           </button>
         </div>
-        <div className="widget-item-2">
+        <div className="widget-item-2" onClick={handleDisplay}>
           <Line data={data()} options={options}></Line>
         </div>
       </div>
