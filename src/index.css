@@ -22,6 +22,7 @@ body {
   margin: auto;
   background-color: var(--bgm);
   font-family: var(--font2);
+  color: var(--grey);
 }
 
 .centered {
@@ -38,6 +39,15 @@ body {
 
 h4 {
   color: var(--grey);
+  font-weight: bold;
+}
+
+.converter-card-header {
+  justify-content: center;
+  text-align: center;
+
+  color: var(--grey);
+  font-weight: bold;
 }
 
 /* button */
@@ -215,4 +225,14 @@ li {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+/* convert-card */
+.converter-card {
+  width: 100%;
+}
+
+.converter-list {
+  height: 2.8rem;
+  align-items: center;
 }

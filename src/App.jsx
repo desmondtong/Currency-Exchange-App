@@ -10,9 +10,183 @@ import FullConverter from "./Pages/FullConverter";
 const App = () => {
   const defaultCurrency = { from: "SGD", to: "MYR" };
   const todayDate = new Date().toISOString().split("T")[0];
+  const emojiFlags = {
+    AED: "🇦🇪",
+    AFN: "🇦🇫",
+    ALL: "🇦🇱",
+    AMD: "🇦🇲",
+    ANG: "🇳🇱",
+    AOA: "🇦🇴",
+    ARS: "🇦🇷",
+    AUD: "🇦🇺",
+    AWG: "🇦🇼",
+    AZN: "🇦🇿",
+    BAM: "🇧🇦",
+    BBD: "🇧🇧",
+    BDT: "🇧🇩",
+    BGN: "🇧🇬",
+    BIF: "🇧🇮",
+    BMD: "🇧🇲",
+    BND: "🇧🇳",
+    BOB: "🇧🇴",
+    BRL: "🇧🇷",
+    BSD: "🇧🇸",
+    BWP: "🇧🇼",
+    BYN: "🇧🇾",
+    BZD: "🇧🇿",
+    CAD: "🇨🇦",
+    CDF: "🇨🇩",
+    CHF: "🇨🇭",
+    CLP: "🇨🇱",
+    CNY: "🇨🇳",
+    COP: "🇨🇴",
+    CRC: "🇨🇷",
+    CVE: "🇨🇻",
+    CZK: "🇨🇿",
+    DJF: "🇩🇯",
+    DKK: "🇩🇰",
+    DOP: "🇩🇴",
+    DZD: "🇩🇿",
+    EGP: "🇪🇬",
+    ETB: "🇪🇹",
+    EUR: "🇪🇺",
+    FJD: "🇫🇯",
+    FKP: "🇫🇰",
+    GBP: "🇬🇧",
+    GEL: "🇬🇪",
+    GIP: "🇬🇮",
+    GMD: "🇬🇲",
+    GNF: "🇬🇳",
+    GTQ: "🇬🇹",
+    GYD: "🇬🇾",
+    HKD: "🇭🇰",
+    HNL: "🇭🇳",
+    HRK: "🇭🇷",
+    HTG: "🇭🇹",
+    HUF: "🇭🇺",
+    IDR: "🇮🇩",
+    ILS: "🇮🇱",
+    INR: "🇮🇳",
+    ISK: "🇮🇸",
+    JMD: "🇯🇲",
+    JPY: "🇯🇵",
+    KES: "🇰🇪",
+    KGS: "🇰🇬",
+    KHR: "🇰🇭",
+    KMF: "🇰🇲",
+    KRW: "🇰🇷",
+    KYD: "🇰🇾",
+    KZT: "🇰🇿",
+    LAK: "🇱🇦",
+    LBP: "🇱🇧",
+    LKR: "🇱🇰",
+    LRD: "🇱🇷",
+    LSL: "🇱🇸",
+    MAD: "🇲🇦",
+    MDL: "🇲🇩",
+    MGA: "🇲🇬",
+    MKD: "🇲🇰",
+    MMK: "🇲🇲",
+    MNT: "🇲🇳",
+    MOP: "🇲🇴",
+    MRO: "🇲🇷",
+    MUR: "🇲🇺",
+    MVR: "🇲🇻",
+    MWK: "🇲🇼",
+    MXN: "🇲🇽",
+    MYR: "🇲🇾",
+    MZN: "🇲🇿",
+    NAD: "🇳🇦",
+    NGN: "🇳🇬",
+    NIO: "🇳🇮",
+    NOK: "🇳🇴",
+    NPR: "🇳🇵",
+    NZD: "🇳🇿",
+    PAB: "🇵🇦",
+    PEN: "🇵🇪",
+    PGK: "🇵🇬",
+    PHP: "🇵🇭",
+    PKR: "🇵🇰",
+    PLN: "🇵🇱",
+    PYG: "🇵🇾",
+    QAR: "🇶🇦",
+    RON: "🇷🇴",
+    RSD: "🇷🇸",
+    RUB: "🇷🇺",
+    RWF: "🇷🇼",
+    SAR: "🇸🇦",
+    SBD: "🇸🇧",
+    SCR: "🇸🇨",
+    SEK: "🇸🇪",
+    SGD: "🇸🇬",
+    SHP: "🇸🇭",
+    SLL: "🇸🇱",
+    SOS: "🇸🇴",
+    SRD: "🇸🇷",
+    STD: "🇸🇹",
+    SZL: "🇸🇿",
+    THB: "🇹🇭",
+    TJS: "🇹🇯",
+    TOP: "🇹🇴",
+    TRY: "🇹🇷",
+    TTD: "🇹🇹",
+    TWD: "🇹🇼",
+    TZS: "🇹🇿",
+    UAH: "🇺🇦",
+    UGX: "🇺🇬",
+    USD: "🇺🇸",
+    UYU: "🇺🇾",
+    UZS: "🇺🇿",
+    VND: "🇻🇳",
+    VUV: "🇻🇺",
+    WST: "🇼🇸",
+    XAF: "🇨🇲",
+    XCD: "🇦🇮",
+    XOF: "🇧🇯",
+    XPF: "🇵🇫",
+    YER: "🇾🇪",
+    ZAR: "🇿🇦",
+    ZMW: "🇿🇲",
+    ZWL: "🇿🇼",
+    BHD: "🇧🇭",
+    BTN: "🇧🇹",
+    CLF: "🇨🇱",
+    CNH: "🇨🇳",
+    CUC: "🇨🇺",
+    CUP: "🇨🇺",
+    ERN: "🇪🇷",
+    GGP: "🇬🇬",
+    GHS: "🇬🇭",
+    IMP: "🇮🇲",
+    IQD: "🇮🇶",
+    IRR: "🇮🇷",
+    JEP: "🇯🇪",
+    JOD: "🇯🇴",
+    KPW: "🇰🇵",
+    KWD: "🇰🇼",
+    OMR: "🇴🇲",
+    LYD: "🇱🇾",
+    MRU: "🇲🇷",
+    SDG: "🇸🇩",
+    SSP: "🇸🇸",
+    STN: "🇸🇹",
+    SVC: "🇸🇻",
+    SYP: "🇸🇾",
+    TMT: "🇹🇲",
+    TND: "🇹🇳",
+    VEF: "🇻🇪",
+    VES: "🇻🇪",
+    XAG: "🏳",
+    XAU: "🏳",
+    XDR: "🏳",
+    XPD: "🏳",
+    XPT: "🏳",
+    BTC: "🏳",
+  };
 
   // state for API endpoints (GET)
   const [currSymbol, setcurrSymbol] = useState({});
+  const [convert, setConvert] = useState({ result: 1 });
 
   // state
   const [selection, setSelection] = useState({
@@ -26,6 +200,13 @@ const App = () => {
 
   // function to call API
   const getData = useGet();
+
+  const getConvert = async () => {
+    const data = await getData(
+      `convert?from=${selection.from}&to=${selection.to}&amount=${selection.amount}&date=${selection.date}`
+    );
+    setConvert(data);
+  };
 
   const getCurrSymbol = async () => {
     const data = await getData("symbols");
@@ -44,6 +225,7 @@ const App = () => {
   return (
     <>
       <NavBar></NavBar>
+      {/* {JSON.stringify(selection)} */}
       <div className="container">
         <Routes>
           <Route
@@ -58,6 +240,9 @@ const App = () => {
                 setWidgetInfo={setWidgetInfo}
                 currSymbol={currSymbol}
                 getCurrSymbol={getCurrSymbol}
+                emojiFlags={emojiFlags}
+                convert={convert}
+                getConvert={getConvert}
               />
             }
           ></Route>
@@ -67,6 +252,12 @@ const App = () => {
               <FullConverter
                 currSymbol={currSymbol}
                 getCurrSymbol={getCurrSymbol}
+                selection={selection}
+                setSelection={setSelection}
+                todayDate={todayDate}
+                emojiFlags={emojiFlags}
+                convert={convert}
+                getConvert={getConvert}
               />
             }
           ></Route>
