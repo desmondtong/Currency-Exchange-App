@@ -94,4 +94,4 @@ Discover more about the creator behind this humble app (that's me!).
 ### Currency Flags
 - [Country Currency Emoji Flags](https://github.com/opencollective/country-currency-emoji-flags/blob/main/currency-data.json)
 
-### Credit to annoying brother for designing the logo 🤡
+### Credit to annoying [brother](https://www.behance.net/ivantong1?fbclid=PAAaZDZ9fGW5H0rf3B750mvN3W2acqYTYUHGMSaZy_A28J1nqJaZEb2cqd0B0) for designing the logo 🤡
