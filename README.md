@@ -1,3 +1,5 @@
+![Frame 60](https://github.com/desmondtong/Currency-Exchange-App/assets/107420497/58d34e1e-4660-4da1-8b89-c3375f5375fe)
+
 # CurrenSee (Currency Converter)
 ## Introduction
 CurrenSee is a user-friendly and intuitive **React App** that provides you with a comprehensive set of tools for currency conversion and exchange rate tracking. Leveraging the powerful [Exchangerate.host](https://exchangerate.host/#/) API, CurrenSee allows you to effortlessly check real-time currency conversion rates, explore historical rate trends through interactive graphs, and manage your favorite currencies with a personalized watchlist.
@@ -24,7 +26,7 @@ Get a closer look at your favorite exchange rates with a larger and more detaile
 Discover more about the creator behind this humble app (that's me!).
 <img width="1454" alt="image" src="https://github.com/desmondtong/Currency-Exchange-App/assets/107420497/cca21c10-20ae-435a-81f9-3fb26cf0dfc9">
 
-## Key Features Highlights
+## Features Highlight
 ### 1/ Graph Widgets
 > 1. Easily add the current graph in view to a widget by clicking the "+" button. The app supports up to a maximum of 4 widgets, and adding a 5th widget will remove the first one.
 > 2. To remove any widgets, simply hover over the corner of the widget to reveal the delete button.
@@ -58,23 +60,18 @@ Discover more about the creator behind this humble app (that's me!).
 ### Front-end Libraries/Frameworks
 - Bootstrap
 - Material UI
-- 
+
 ### UI Design Inspiration
 - XE Currency Converter
 - [Currency Dashboard by Vitaliy Malyushko](https://dribbble.com/shots/7242468-Currency-dashboard-with-UI-Animation)
 
-### APIs
-- Exchangerate.host
+### API documentation
+- [Exchangerate.host](https://exchangerate.host/#/docs)
 
-### JavaScript
+### JavaScript & JSX
 - [MDN Web Docs - input/date](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date)
 - [Subtracting Dates in JavaScript](https://stackoverflow.com/questions/37002681/subtract-days-months-years-from-a-date-in-javascript)
-
-### Dropdown Selection Styling
 - [Custom Dropdown Arrow Appearance](https://stackoverflow.com/questions/611482/change-color-and-appearance-of-drop-down-arrow)
-
-### Data Visualization
-- Chart.js
 
 ### React Integration with Chart.js
 - [How to Use Chart.js with React](https://upmostly.com/tutorials/how-to-use-chart-js-with-react)
@@ -97,3 +94,4 @@ Discover more about the creator behind this humble app (that's me!).
 ### Currency Flags
 - [Country Currency Emoji Flags](https://github.com/opencollective/country-currency-emoji-flags/blob/main/currency-data.json)
 
+### Credit to annoying brother for designing the logo 🤡
