@@ -1,3 +1,7 @@
+# MY WEBSITE IS CURRENTLY DOWN DUE TO A CHANGE IN THE THIRD API USED [UPDATE IN PROGRESS]
+
+
+---
 ![Frame 60](https://github.com/desmondtong/Currency-Exchange-App/assets/107420497/58d34e1e-4660-4da1-8b89-c3375f5375fe)
 
 # CurrenSee (Currency Converter)
