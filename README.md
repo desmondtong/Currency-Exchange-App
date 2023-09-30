@@ -8,8 +8,6 @@
 ## Introduction
 CurrenSee is a user-friendly and intuitive **React App** that provides you with a comprehensive set of tools for currency conversion and exchange rate tracking. Leveraging the powerful [Exchangerate.host](https://exchangerate.host/#/) API, CurrenSee allows you to effortlessly check real-time currency conversion rates, explore historical rate trends through interactive graphs, and manage your favorite currencies with a personalized watchlist.
 
-Feel free to explore the app [here](https://curren-see.netlify.app).
-
 >p/s: the currency rate are refreshed daily
 
 ---
